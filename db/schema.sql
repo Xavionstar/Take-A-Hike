@@ -1,0 +1,2 @@
+DROP DATABASE IF EXISTS takeahike;
+CREATE DATABASE takeahike;
