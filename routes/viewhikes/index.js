@@ -7,8 +7,10 @@ router.get("/", async (req, res) => {
   postData = postData.map((singlePostData) =>
     singlePostData.get({ plain: true })
   );
-  res.render("viewhikes");
-  postData;
+  res.render("viewhikes", {
+    posts :postData
+  })
+  
 });
 
 module.exports = router;
