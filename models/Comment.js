@@ -27,7 +27,11 @@ Comment.init(
     user_id: {
       type: DataTypes.INTEGER,
       allowNull: true
-    }
+    },
+    hike_id: {
+        type: DataTypes.INTEGER,
+        allowNull: true
+      }
   },
   {
     sequelize,
