@@ -3,35 +3,39 @@ const sequelize = require('../config/connection');
 const bcrypt = require('bcrypt');
 
 class Comment extends Model {
-    checkPassword(loginPw) {
-        return true; //bcrypt.compareSync(loginPw, this.password);
-      }
+  checkPassword(loginPw) {
+    return true; //bcrypt.compareSync(loginPw, this.password);
+  }
 }
 
 Comment.init(
-    {
-        id: {
-            type: DataTypes.INTEGER,
-            allowNull: false,
-            primaryKey: true,
-            autoIncrement: true,
-          },
-          title: {
-            type: DataTypes.STRING,
-            allowNull: false,
-          },
-          content: {
-            type: DataTypes.STRING,
-            allowNull: false,
-          },
+  {
+    id: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      primaryKey: true,
+      autoIncrement: true,
     },
-    {
-        sequelize,
-        timestamps: true,
-        freezeTableName: true,
-        underscored: true,
-        modelName: 'comment',
-      },
+    title: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    content: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    user_id: {
+      type: DataTypes.INTEGER,
+      allowNull: true
+    }
+  },
+  {
+    sequelize,
+    timestamps: true,
+    freezeTableName: true,
+    underscored: true,
+    modelName: 'comment',
+  },
 );
 
 module.exports = Comment;
