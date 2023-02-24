@@ -24,9 +24,9 @@ Hike.init(
       type: DataTypes.INTEGER,
       allowNull: false,
     },
-    condition: {
-      type: DataTypes.STRING,
-      allowNull: false,
+    description: {
+      type: DataTypes.TEXT,
+      allowNull: true,
     },
     max_altitude: {
       type: DataTypes.INTEGER,
