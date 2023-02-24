@@ -1,0 +1,17 @@
+<div class="row">
+{{#each posts as |post|}}
+<div class="col-sm-6 mb-3 mb-sm-0">
+    <div class="card mt-4">
+      <div class="card-body">
+        <h5 class="card-title">Name- {{post.name}}</h5>
+        <p class="card-text">{{post.location}}</p>
+        <p class="card-text">{{post.difficulty}}</p>
+        <p class="card-text">{{post.description}}</p>
+        <p class="card-text">{{post.max_altitude}}</p>
+        <p class="card-text">{{post.length}}</p>
+        
+      </div>
+    </div>
+  </div>
+{{/each}}
+</div>
