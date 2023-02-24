@@ -8,8 +8,8 @@ let sequelize;
     process.env.DB_NAME,
     process.env.DB_USER,
     process.env.DB_PASSWORD,
-    process.env.API_KEY,
-    process.env.API_SECRET,
+    // process.env.API_KEY,
+    // process.env.API_SECRET,
     {
       host: 'localhost',
       dialect: 'mysql',
