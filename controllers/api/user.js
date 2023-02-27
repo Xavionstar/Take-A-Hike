@@ -1,13 +1,7 @@
-const express = require('express');
-//const { User } = require('../../models');
-const router = express.Router();
-
-router.get('/', (req, res) => {
-  console.log('cheese')
-res.render('login')
-});
-
-// router.post('/', async (req, res) => {
+const router = require('express').Router();
+const { Comment, Hike, User } = require(`../../models`);
+ 
+ // router.post('/', async (req, res) => {
     
 //     try {
 //         console.log(req.body)
@@ -51,6 +45,5 @@ res.render('login')
   //     res.status(404).end();
   //   }
   // });
-  
 
-module.exports = router;
+  module.exports = router
