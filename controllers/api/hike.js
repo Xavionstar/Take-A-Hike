@@ -41,7 +41,7 @@ router.get('/difficulty/:diff', async (req, res) => {
         const hikesDifficulty = await Hike.findAll({
             where: { difficulty: req.params.diff }
         })
-        return res.status(200).json(hikesLocation)
+        return res.status(200).json(hikesDifficulty)
     } catch (err) {
        return res.status(500).json(err)
     }

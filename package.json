@@ -13,7 +13,7 @@
   "scripts": {
     "start": "node server.js",
     "watch": "nodemon server.js",
-    "seed": "node seeds/seed.js"
+    "seed": "node seeds/index.js"
   },
   "name": "technically-speaking",
   "description": "A tech blog for technical thoughts on tech",
