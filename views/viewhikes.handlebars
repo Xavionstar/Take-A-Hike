@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="#">Filter Results</a>
+  <div class="navbar-brand">Filter Results</div>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
     aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -8,38 +8,31 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
-          aria-haspopup="true" aria-expanded="false">
-          By Location
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="#">West</a>
-          <a class="dropdown-item" href="#">East</a>
-          <a class="dropdown-item" href="#">North</a>
-          <a class="dropdown-item" href="#">South</a>
-        </div>
+        <select class="form-select" aria-label="Default select example" id="diff">
+          <option value= selected>by difficulty</option>
+          <option value="easy">Easy</option>
+          <option value="medium">Medium</option>
+          <option value="hard">Hard</option>
+        </select>
       </li>
       <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
-          aria-haspopup="true" aria-expanded="false">
-          By Difficulty
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="#">Easy</a>
-          <a class="dropdown-item" href="#">Medium</a>
-          <a class="dropdown-item" href="#">Hard</a>
+        <select class="form-select" aria-label="Default select example" id="loc">
+          <option value="" selected>by location</option>
+          <option value="north">North</option>
+          <option value="east">East</option>
+          <option value="south">South</option>
+          <option value="west">West</option>
+        </select>
       </li>
       <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
-          aria-haspopup="true" aria-expanded="false">
-          By Length
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="#">0-3 Miles</a>
-          <a class="dropdown-item" href="#">3-10 Miles</a>
-          <a class="dropdown-item" href="#">10+ Miles</a>
-        </div>
+        <select class="form-select" aria-label="Default select example" id="len">
+          <option value="" selected>by length</option>
+          <option value="0">0-3 Miles</option>
+          <option value="3">3-10 Miles</option>
+          <option value="10">10+ Miles</option>
+        </select>
       </li>
+      <button type="button" class="btn btn-dark" id="filter">Filter</button>
     </ul>
   </div>
 </nav>
@@ -69,3 +62,4 @@
   integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
   integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<script src="./filter.js"></script>

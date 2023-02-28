@@ -13,44 +13,26 @@ router.get("/:id", async (req, res) => {
     });
 });
 
-router.get('/location/:loc', async (req, res) => {
+router.get('/', async (req, res) => {
     try {
-        const hikesLocation = await Hike.findAll({
-            where: { location: req.params.loc }
+        const location = req.query.location;
+        const length = req.query.length;
+        const difficulty = req.query.difficulty;
+        const filteredHikes = await Hike.findAll({
+            where: {
+                location: location,
+                length: length,
+                difficulty: difficulty
+            }
         })
-        return res.status(200).json(hikesLocation)
+        const results = filteredHikes.map((hike) => hike.get({ plain: true }))
+        res.render('viewhikes', {
+            results
+        });
     } catch (err) {
-       return res.status(500).json(err)
+        return res.status(500).json(err)
     }
 })
-
-router.get('/length/:len', async (req, res) => {
-    try {
-        const hikesLength = await Hike.findAll({
-            where: { length: req.params.len }
-        })
-        
-        return res.status(200).json(hikesLength)
-    } catch (err) {
-       return res.status(500).json(err)
-    }
-})
-
-router.get('/difficulty/:diff', async (req, res) => {
-    try {
-        const hikesDifficulty = await Hike.findAll({
-            where: { difficulty: req.params.diff }
-        })
-        return res.status(200).json(hikesDifficulty)
-    } catch (err) {
-       return res.status(500).json(err)
-    }
-})
-
-router.post('/:id', async (req, res) => {
-    res.redirect('back')
-
-});
 
 
 
