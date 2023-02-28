@@ -30,16 +30,16 @@ Comment.init(
       references: {
         model: `user`,
         key: `id`
-    }
+      }
     },
     hike_id: {
-        type: DataTypes.INTEGER,
-        allowNull: true,
-        references: {
-          model: `hike`,
-          key: `id`
+      type: DataTypes.INTEGER,
+      allowNull: true,
+      references: {
+        model: `hike`,
+        key: `id`
       }
-      }
+    }
   },
   {
     sequelize,
