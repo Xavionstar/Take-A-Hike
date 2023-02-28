@@ -14,7 +14,7 @@ const sequelize = require("./config/connection");
 // });
 const handlebars = require("express-handlebars");
 
-const hbs = handlebars.create();
+const hbs = handlebars.create({helpers});
 //const session = require('express-session');
 
 app.set("view engine", "handlebars");

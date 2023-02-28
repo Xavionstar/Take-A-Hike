@@ -1,0 +1,22 @@
+<div class="row">
+    <div class="card mt-4 col-sm-12 mb-3 mb-sm-0">
+      <div class="card-body">
+        <h5>Edit Hike Post</h5>
+        <form method="POST" action="/dashboard/{{hike.id}}?_method=PUT">
+        <label for="editHikePostTitleTextArea"> Hike Post Title</label>
+          <textarea id="editHikePostTitleTextArea" class="form-control " name="hiketitle" rows="3" >{{hike.title}}</textarea>
+
+           
+        
+        <label for="editHikePostContentTextArea">Hike Post Content</label>
+        
+        
+          <textarea id="editHikePostContentTextArea" class="form-control " name="hikecontent" rows="3" >{{hike.description}}</textarea>
+
+          <button type="submit" class="btn btn-primary mt-4 mb-3">Save Edit</button> 
+          
+        </form>
+        
+      </div>
+    </div>
+</div>
