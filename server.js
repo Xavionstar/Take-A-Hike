@@ -1,9 +1,10 @@
 const express = require("express");
 const app = express();
 const PORT = process.env.PORT || 4321;
-
+const helpers = require('./utils/helpers');
 const hike = require("./routes/Hike");
 const login = require("./routes/login");
+const profile = require("./routes/profile");
 const viewhikes = require("./routes/viewhikes");
 const sequelize = require("./config/connection");
 // const cloudinary = require('cloudinary').v2;
@@ -15,7 +16,7 @@ const sequelize = require("./config/connection");
 // });
 const handlebars = require("express-handlebars");
 
-const hbs = handlebars.create();
+const hbs = handlebars.create({helpers});
 //const session = require('express-session');
 
 app.set("view engine", "handlebars");
@@ -26,6 +27,7 @@ app.engine("handlebars", hbs.engine);
 app.use("/Hike", hike);
 app.use("/login", login);
 app.use("/viewhikes", viewhikes);
+app.use("/profile", profile);
 
 
 app.use(express.static("styles"));
