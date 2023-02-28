@@ -19,6 +19,7 @@ router.get('/login', (req, res) => {
 
 res.render('signup');
 });
+
 router.get("/viewhikes", async (req, res) => {
     let postData = await Hike.findAll();
     postData = postData.map((singlePostData) =>
@@ -29,8 +30,27 @@ router.get("/viewhikes", async (req, res) => {
     })
 });
 
-router.get('/login', (req, res) => {
-  res.render('login')
+router.get("hike/:id",  async (req, res) => {
+    let post = await Hike.findOne({
+      where: {
+        id: req.params.id,
+      },
+    });
+    post = post.get({ plain: true });
+    res.render("edithike", {
+      post,
+    });
+  });
+
+router.get("/profile",  async (req, res) => {
+    let hikeData = await Hike.findAll();
+    hikeData = hikeData.map((singleHikeData) =>
+      singleHikeData.get({ plain: true })
+    );
+    res.render("profile", {
+      hikes : hikeData,
+      style: 'profile.css'
+    })  
   });
 
 module.exports = router
