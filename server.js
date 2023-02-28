@@ -29,6 +29,7 @@ app.use("/viewhikes", viewhikes);
 
 
 app.use(express.static("styles"));
+app.use(express.static("public"));
 //app.use(session);
 // app.use(express.json());
 

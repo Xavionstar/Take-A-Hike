@@ -9,8 +9,8 @@ router.get("/:id", async (req, res) => {
     },
   });
   hikePost = hikePost.get({ plain: true });
-  
-  res.render("hikePost", {
+  console.log(hikePost)
+  res.render("hike_details", {
     hikePost,
   });
 });
@@ -21,3 +21,4 @@ router.post('/:id', async (req, res) => {
   });
 
 module.exports = router;
+

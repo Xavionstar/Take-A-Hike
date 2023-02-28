@@ -12,6 +12,11 @@ User.hasMany(Comment, {
   onDelete: 'CASCADE'
 });
 
+Hike.hasMany(Comment, {
+  foreignKey: 'hike_id',
+  onDelete: 'CASCADE'
+});
+
 Hike.belongsTo(User, {
   foreignKey: 'user_id'
 });
