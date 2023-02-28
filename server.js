@@ -1,11 +1,9 @@
 const express = require("express");
 const app = express();
 const PORT = process.env.PORT || 4321;
-const helpers = require('./utils/helpers');
-const hike = require("./routes/Hike");
-const login = require("./routes/login");
-const profile = require("./routes/profile");
-const viewhikes = require("./routes/viewhikes");
+const routes = require('./controllers/index')
+
+
 const sequelize = require("./config/connection");
 // const cloudinary = require('cloudinary').v2;
 // const cloudUpload = cloudinary.uploader.upload('https://upload.wikimedia.org/wikipedia/commons/a/ae/Olympic_flag.jpg', {public_id: "olympic_flag"})
@@ -23,26 +21,12 @@ app.set("view engine", "handlebars");
 app.set("views", "./views");
 app.engine("handlebars", hbs.engine);
 
-
-app.use("/Hike", hike);
-app.use("/login", login);
-app.use("/viewhikes", viewhikes);
-app.use("/profile", profile);
-
-
 app.use(express.static("styles"));
 //app.use(session);
 // app.use(express.json());
 
+app.use(routes)
 
-
-
-
-app.get("/", async (req, res) => {
-
- 
-  res.render("homepage");
-});
 
 sequelize.sync({ force: false }).then(() => {
   app.listen(PORT, () => console.log("Now listening"));
