@@ -1,0 +1,42 @@
+<div class="row">
+
+
+{{#each hikes as |hike|}}
+<div class="col-sm-6 mb-3 mb-sm-0">
+    <div class="card mt-4">
+      <div class="card-body">
+        <h5 class="card-title">{{hike.title}}</h5>
+        <p class="card-text">{{hike.description}}</p>
+        <a href="/dashboard/{{hike.id}}" class="btn btn-primary">Edit Post</a>
+        <form class="deleteButton" method="POST" action="/dashboard/{{hike.id}}?_method=DELETE">
+        <button type="submit" class="btn btn-danger">Delete Post</button>
+        </form>
+      </div>
+    </div>
+  </div>
+{{/each}}
+
+
+
+
+
+    <div class="card mt-4 col-sm-12 mb-3 mb-sm-0">
+      <div class="card-body">
+        <h5>Add a New Hike</h5>
+        <form method="post" action="/dashboard">
+        <label for="newHikePostTitleTextArea"> Hike Title</label>
+          <textarea id="newHikePostTitleTextArea" class="form-control " name="hiketitle" rows="3"></textarea>
+
+           
+        
+        <label for="newHikePostContentTextArea">Hike Details </label>
+        
+        
+          <textarea id="newHikePostContentTextArea" class="form-control " name="hikedescription" rows="3"></textarea>
+
+          <button type="submit" class="btn btn-primary mt-4 mb-3">Submit</button> 
+        </form>
+        
+      </div>
+    </div>
+  </div>
