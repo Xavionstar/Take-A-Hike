@@ -4,12 +4,10 @@ const Comment = require('./Comment')
 
 User.hasMany(Hike, {
   foreignKey: 'user_id',
-
 });
 
 User.hasMany(Comment, {
   foreignKey: 'user_id',
-
 });
 
 Hike.hasMany(Comment, {
@@ -19,7 +17,6 @@ Hike.hasMany(Comment, {
 
 Hike.belongsTo(User, {
   foreignKey: 'user_id',
-
 });
 
 Hike.hasMany(Comment, {
@@ -28,7 +25,6 @@ Hike.hasMany(Comment, {
 
 Comment.belongsTo(User, {
   foreignKey: 'user_id',
-
 });
 
 Comment.belongsTo(Hike, {
