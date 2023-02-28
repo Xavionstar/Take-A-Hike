@@ -3,9 +3,9 @@ const sequelize = require('../config/connection');
 const bcrypt = require('bcrypt');
 
 class Comment extends Model {
-  checkPassword(loginPw) {
-    return true; //bcrypt.compareSync(loginPw, this.password);
-  }
+  // checkPassword(loginPw) {
+  //   return true; //bcrypt.compareSync(loginPw, this.password);
+  // }
 }
 
 Comment.init(
@@ -26,11 +26,19 @@ Comment.init(
     },
     user_id: {
       type: DataTypes.INTEGER,
-      allowNull: true
+      allowNull: true,
+      references: {
+        model: `user`,
+        key: `id`
+    }
     },
     hike_id: {
         type: DataTypes.INTEGER,
-        allowNull: true
+        allowNull: true,
+        references: {
+          model: `hike`,
+          key: `id`
+      }
       }
   },
   {
