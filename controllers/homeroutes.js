@@ -42,10 +42,6 @@ router.get("hike/:id",  async (req, res) => {
     });
   });
 
-
-
-
-
 router.get("/profile",  async (req, res) => {
     let hikeData = await Hike.findAll();
     hikeData = hikeData.map((singleHikeData) =>
