@@ -14,7 +14,7 @@ const sequelize = require("./config/connection");
 // });
 const handlebars = require("express-handlebars");
 
-const hbs = handlebars.create();
+const hbs = handlebars.create({helpers});
 //const session = require('express-session');
 
 app.set("view engine", "handlebars");
@@ -22,6 +22,7 @@ app.set("views", "./views");
 app.engine("handlebars", hbs.engine);
 
 app.use(express.static("styles"));
+app.use(express.static("public"));
 //app.use(session);
 // app.use(express.json());
 
