@@ -1,6 +1,19 @@
 const router = require('express').Router();
 const { Comment, Hike, User } = require(`../../models`);
 
+<<<<<<< HEAD
+router.get("hike/:id", async (req, res) => {
+    let hikePost = await Hike.findOne({
+        where: {
+            id: req.params.id,
+        },
+    });
+    hikePost = hikePost.get({ plain: true });
+    res.render("hikePost", {
+        hikePost,
+    });
+});
+=======
 // router.get("/:id", async (req, res) => {
 //     let hikePost = await Hike.findOne({
 //         where: {
@@ -13,6 +26,7 @@ const { Comment, Hike, User } = require(`../../models`);
 //     });
 // });
 
+>>>>>>> origin/main
 
 
 //<====== desmond =======>
@@ -29,8 +43,10 @@ router.get('/', async (req, res) => {
 
 });
 
+
+
 // <====== desmond ======>
-router.get('/:id', async (req, res) => {
+router.get('api/hike/:id', async (req, res) => {
     // find one category by its `id` value
 
 
@@ -39,6 +55,7 @@ router.get('/:id', async (req, res) => {
 
             include: [{ model: Comment }]
         });
+        console.log(hikeData)
 
         if (!hikeData) {
 
