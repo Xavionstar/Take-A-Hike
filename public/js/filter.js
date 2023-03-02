@@ -14,7 +14,7 @@ const filterHandler = async (event) => {
     if (loc.value) { location = `location=${loc.value}&` } else { location = "" };
     if (diff.value) { difficulty = `difficulty=${diff.value}&` } else { difficulty = "" };
     if (len.value) { length = `length=${len.value}` } else { length = "" };
-    const query = `/filter?${location}${difficulty}${length}`
+    const query = `/viewhikes?${location}${difficulty}${length}`
     console.log(query)
     // const posts = await fetch(query, {
     //     method: 'GET'

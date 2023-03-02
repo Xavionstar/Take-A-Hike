@@ -98,8 +98,9 @@ router.get("/profile",  async (req, res) => {
     });
     res.redirect("/profile");
   });
+
   // <====== harrys filter code ======>
-router.get('/filter', async (req, res) => {
+router.get('/viewhikes', async (req, res) => {
   try {
       const hikelocation = req.query.location;
       const length = req.query.length;
@@ -115,8 +116,6 @@ router.get('/filter', async (req, res) => {
       res.status(200).render('viewhikes', {
           posts: posts
       })
-      // console.log(posts)
-      // return res.status(200).json(posts)
   } catch (err) {
       return res.status(500).json(err)
   }
