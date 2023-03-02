@@ -101,21 +101,26 @@ router.delete("/profile/:id", async (req, res) => {
   res.redirect("/profile");
 });
 
-// <====== harrys filter code ======>
+// <====== viewhikes view  ======>
 router.get('/viewhikes', async (req, res) => {
   try {
-    const hikelocation = req.query.location;
+    //<------ grabs each query parameter and assigns it to a value ------>
+    const hike = req.query.location;
     const lengthUl = req.query.lengthUl;
     const lengthLl = req.query.lengthLl
     const difficulty = req.query.difficulty;
+    //<------ variable 'filter' ------>
     let filter = {}
-    if (hikelocation) { filter.location = req.query.location };
-    if (lengthUl && lengthLl) { filter.length = {[Op.gt]: req.query.lengthLl, [Op.lte]: req.query.lengthUl}}
+    //<------ if there exists a query parameter of each type, then that parameter is passed into the filter as a sequelize clause, in the case of length using sequelize operators to accomodate a range ------>
+    if (hike) { filter.location = req.query.location };
+    if (lengthUl && lengthLl) { filter.length = {[Op.gt]: req.query.lengthLl, [Op.lte]: req.query.lengthUl}};
     if (difficulty) { filter.difficulty = req.query.difficulty };
+    //<------ sequelize findall with a where clause ------>
     const filteredHikes = await Hike.findAll({
       where: filter
     })
     const posts = filteredHikes.map((hike) => hike.get({ plain: true }))
+    //<------ viewhikes view rendered with a 200 code ------>
     res.status(200).render('viewhikes', {
       posts: posts
     })
