@@ -28,3 +28,11 @@ possible api's: cloudinary
 
     cloudinary??? new technology
 
+units:
+name - name of the hike
+location - western washington, nothern washington, eastern washington, southern washington
+difficulty - 1-5
+description - written description by the user
+max-altitude - number input (ft)
+length - number miles
+rating - 1-5 stars

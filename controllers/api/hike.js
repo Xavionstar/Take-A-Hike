@@ -1,7 +1,7 @@
 const router = require("express").Router();
 const { Comment, Hike, User } = require(`../../models`);
 
-router.get("/hike/:id", async (req, res) => {
+router.get("hike/:id", async (req, res) => {
     let hikePost = await Hike.findOne({
         where: {
             id: req.params.id,
@@ -12,9 +12,17 @@ router.get("/hike/:id", async (req, res) => {
         hikePost,
     });
 });
-
-
-
+// router.get("/:id", async (req, res) => {
+//   let hikePost = await Hike.findOne({
+//     where: {
+//       id: req.params.id,
+//     },
+//   });
+//   hikePost = hikePost.get({ plain: true });
+//   res.render("hikePost", {
+//     hikePost,
+//   });
+// });
 
 
 
