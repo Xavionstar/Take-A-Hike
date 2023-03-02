@@ -1,15 +1,22 @@
 <div class="row">
     <div class="card mt-4 col-sm-12 mb-3 mb-sm-0">
       <div class="card-body">
-        <h5>Edit Hike Post</h5>
-        <form method="POST" action="/dashboard/{{hike.id}}?_method=PUT">
-        <label for="editHikePostTitleTextArea"> Hike Post Title</label>
-          <textarea id="editHikePostTitleTextArea" class="form-control " name="hiketitle" rows="3" >{{hike.title}}</textarea>
-
-           
+        <h5>Edit Hike </h5>
+        <form method="POST" action="/profile/{{hike.id}}?_method=PUT">
+        <label for="editHikeNameTextArea"> <strong>Hike name</strong> </label>
+          <input type="text" value="{{hike.name}}" id="editHikeNameTextArea" class="form-control " name="hikename" rows="3" >
+        <label for="editHikeLocationTextArea"> <strong>Hike Location</strong> </label>
+          <input type="text" value="{{hike.location}}" id="editHikeLocationTextArea" class="form-control " name="hikelocation" rows="3" >
+        <label for="editHikeDifficultyTextArea"> <strong>Hike Difficulty</strong> </label>
+          <input type="text" value="{{hike.difficulty}}" id="editHikeDifficultyTextArea" class="form-control " name="hikedifficulty" rows="3" >
+        <label for="editHikeAltitudeTextArea"> <strong>Hike Altitude</strong> </label>
+          <input type="text" value="{{hike.max_altitude}}" id="editHikeAltitudeTextArea" class="form-control " name="hikealtitude" rows="3" >
+        <label for="editHikeLengthTextArea"> <strong>Hike Length</strong> </label>
+          <input type="text" value="{{hike.length}}" id="editHikeLengthTextArea" class="form-control " name="hikelength" rows="3" >
+        <label for="editHikeRatingTextArea"> <strong>Hike Rating</strong> </label>
+          <input type="text" value="{{hike.rating}}" id="editHikeRatingTextArea" class="form-control " name="hikerating" rows="3" > 
         
-        <label for="editHikePostContentTextArea">Hike Post Content</label>
-        
+        <label for="editHikePostContentTextArea"> <strong>Hike Description</strong> </label>        
         
           <textarea id="editHikePostContentTextArea" class="form-control " name="hikecontent" rows="3" >{{hike.description}}</textarea>
 
