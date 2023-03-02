@@ -1,6 +1,19 @@
 const router = require("express").Router();
 const { Comment, Hike, User } = require(`../../models`);
 
+<<<<<<< HEAD
+router.get("hike/:id", async (req, res) => {
+    let hikePost = await Hike.findOne({
+        where: {
+            id: req.params.id,
+        },
+    });
+    hikePost = hikePost.get({ plain: true });
+    res.render("hikePost", {
+        hikePost,
+    });
+});
+=======
 // router.get("/:id", async (req, res) => {
 //   let hikePost = await Hike.findOne({
 //     where: {
@@ -13,6 +26,7 @@ const { Comment, Hike, User } = require(`../../models`);
 //   });
 // });
 
+>>>>>>> origin/main
 
 
 //<====== desmond =======>
@@ -25,14 +39,19 @@ router.get("/", async (req, res) => {
   }
 });
 
-// <====== desmond ======>
-router.get("/:id", async (req, res) => {
-  // find one category by its `id` value
 
-  try {
-    const hikeData = await Hike.findByPk(req.params.id, {
-      include: [{ model: Comment }],
-    });
+
+// <====== desmond ======>
+router.get('api/hike/:id', async (req, res) => {
+    // find one category by its `id` value
+
+
+    try {
+        const hikeData = await Hike.findByPk(req.params.id, {
+
+            include: [{ model: Comment }]
+        });
+        console.log(hikeData)
 
     if (!hikeData) {
       res.status(404).json({ message: "No hike found with this id!" });
