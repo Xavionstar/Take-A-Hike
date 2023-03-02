@@ -2,20 +2,22 @@ const router = require('express').Router();
 const { Comment, Hike, User } = require(`../models`);
 
 router.get("/", async (req, res) => {
-    res.render("homepage");
+
+    res.render("homepage", { 
+      logged_in: req.session.logged_in
+    }); 
 });
 
 // render login form
 router.get('/login', (req, res) => {
-    console.log("from get/login");
    
-  res.render('login');
+  res.render('login',  { 
+    logged_in: req.session.logged_in
   });
+});
 
   // render signup form
-  router.get('/signup',(req, res) => {
-
-  console.log("from get/signup");
+router.get('/signup',(req, res) => {
 
 res.render('signup');
 });
@@ -26,8 +28,14 @@ router.get("/viewhikes", async (req, res) => {
         result.get({ plain: true })
     );
     res.render("viewhikes", {
+<<<<<<< HEAD
+        posts: postData,
+        logged_in: req.session.logged_in
+    });
+=======
         posts: results
     })
+>>>>>>> origin/main
 });
 
 router.get("hike/:id",  async (req, res) => {
@@ -39,6 +47,7 @@ router.get("hike/:id",  async (req, res) => {
     post = post.get({ plain: true });
     res.render("edithike", {
       post,
+      logged_in: req.session.logged_in
     });
   });
 
@@ -49,8 +58,9 @@ router.get("/profile",  async (req, res) => {
     );
     res.render("profile", {
       hikes : hikeData,
-      style: 'profile.css'
-    })  
+      style: 'profile.css',
+      logged_in: req.session.logged_in
+    });
   });
 
   // <====== harrys filter code ======>
