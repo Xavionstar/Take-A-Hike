@@ -21,12 +21,12 @@ res.render('signup');
 });
 
 router.get("/viewhikes", async (req, res) => {
-    let postData = await Hike.findAll();
-    postData = postData.map((singlePostData) =>
-        singlePostData.get({ plain: true })
+    let results = await Hike.findAll();
+    results = results.map((result) =>
+        result.get({ plain: true })
     );
     res.render("viewhikes", {
-        posts: postData
+        posts: results
     })
 });
 

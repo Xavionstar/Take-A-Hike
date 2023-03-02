@@ -22,10 +22,11 @@ const seedDatabase = async () => {
       user_id: users[Math.floor(Math.random() * users.length)].id,
     });
   }
+  
   for (const commentContent of commentData) {
     await Comment.create({
       ...commentContent
-      
+
     });
   }
 

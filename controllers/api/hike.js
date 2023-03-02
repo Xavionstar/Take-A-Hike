@@ -1,35 +1,37 @@
 const router = require('express').Router();
 const { Comment, Hike, User } = require(`../../models`);
 
-router.get("/:id", async (req, res) => {
-    let hikePost = await Hike.findOne({
-        where: {
-            id: req.params.id,
-        },
-    });
-    hikePost = hikePost.get({ plain: true });
-    res.render("hikePost", {
-        hikePost,
-    });
-});
+// router.get("/:id", async (req, res) => {
+//     let hikePost = await Hike.findOne({
+//         where: {
+//             id: req.params.id,
+//         },
+//     });
+//     hikePost = hikePost.get({ plain: true });
+//     res.render("hikePost", {
+//         hikePost,
+//     });
+// });
 
 // <====== harrys filter code ======>
-router.get('/', async (req, res) => {
+router.get('/filter', async (req, res) => {
     try {
-        const location = req.query.location;
+        const hikelocation = req.query.location;
         const length = req.query.length;
         const difficulty = req.query.difficulty;
+        let filter={}
+        if (hikelocation) {filter.location = req.query.location};
+        if (length) {filter.length = req.query.length};
+        if (difficulty) {filter.difficulty = req.query.difficulty};
         const filteredHikes = await Hike.findAll({
-            where: {
-                location: location,
-                length: length,
-                difficulty: difficulty
-            }
+            where: filter
         })
-        const results = filteredHikes.map((hike) => hike.get({ plain: true }))
-        res.render('viewhikes', {
-            results
-        });
+        const posts = filteredHikes.map((hike) => hike.get({ plain: true }))
+        res.status(200).render("viewhikes", {
+            posts: posts
+        })
+        // console.log(posts)
+        // return res.status(200).json(posts)
     } catch (err) {
         return res.status(500).json(err)
     }
