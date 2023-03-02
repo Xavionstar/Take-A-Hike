@@ -28,14 +28,9 @@ router.get("/viewhikes", async (req, res) => {
         result.get({ plain: true })
     );
     res.render("viewhikes", {
-<<<<<<< HEAD
         posts: postData,
         logged_in: req.session.logged_in
     });
-=======
-        posts: results
-    })
->>>>>>> origin/main
 });
 
 router.get("/profile/:id",  async (req, res) => {
