@@ -23,14 +23,19 @@ res.render('signup');
 });
 
 router.get("/viewhikes", async (req, res) => {
-    let postData = await Hike.findAll();
-    postData = postData.map((singlePostData) =>
-        singlePostData.get({ plain: true })
+    let results = await Hike.findAll();
+    results = results.map((result) =>
+        result.get({ plain: true })
     );
     res.render("viewhikes", {
+<<<<<<< HEAD
         posts: postData,
         logged_in: req.session.logged_in
     });
+=======
+        posts: results
+    })
+>>>>>>> origin/main
 });
 
 router.get("hike/:id",  async (req, res) => {
@@ -57,5 +62,29 @@ router.get("/profile",  async (req, res) => {
       logged_in: req.session.logged_in
     });
   });
+
+  // <====== harrys filter code ======>
+router.get('/filter', async (req, res) => {
+  try {
+      const hikelocation = req.query.location;
+      const length = req.query.length;
+      const difficulty = req.query.difficulty;
+      let filter={}
+      if (hikelocation) {filter.location = req.query.location};
+      if (length) {filter.length = req.query.length};
+      if (difficulty) {filter.difficulty = req.query.difficulty};
+      const filteredHikes = await Hike.findAll({
+          where: filter
+      })
+      const posts = filteredHikes.map((hike) => hike.get({ plain: true }))
+      res.status(200).render('viewhikes', {
+          posts: posts
+      })
+      // console.log(posts)
+      // return res.status(200).json(posts)
+  } catch (err) {
+      return res.status(500).json(err)
+  }
+});
 
 module.exports = router
