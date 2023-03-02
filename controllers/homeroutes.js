@@ -22,16 +22,7 @@ router.get('/signup',(req, res) => {
 res.render('signup');
 });
 
-router.get("/viewhikes", async (req, res) => {
-    let results = await Hike.findAll();
-    results = results.map((result) =>
-        result.get({ plain: true })
-    );
-    res.render("viewhikes", {
-        posts: postData,
-        logged_in: req.session.logged_in
-    });
-});
+
 
 router.get("/profile/:id",  async (req, res) => {
     let hike = await Hike.findOne({
