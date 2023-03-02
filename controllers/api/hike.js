@@ -1,85 +1,78 @@
-const router = require('express').Router();
+const router = require("express").Router();
 const { Comment, Hike, User } = require(`../../models`);
 
 router.get("/:id", async (req, res) => {
-    let hikePost = await Hike.findOne({
-        where: {
-            id: req.params.id,
-        },
-    });
-    hikePost = hikePost.get({ plain: true });
-    res.render("hikePost", {
-        hikePost,
-    });
+  let hikePost = await Hike.findOne({
+    where: {
+      id: req.params.id,
+    },
+  });
+  hikePost = hikePost.get({ plain: true });
+  res.render("hikePost", {
+    hikePost,
+  });
 });
 
 // <====== harrys filter code ======>
-router.get('/', async (req, res) => {
-    try {
-        const location = req.query.location;
-        const length = req.query.length;
-        const difficulty = req.query.difficulty;
-        const filteredHikes = await Hike.findAll({
-            where: {
-                location: location,
-                length: length,
-                difficulty: difficulty
-            }
-        })
-        const results = filteredHikes.map((hike) => hike.get({ plain: true }))
-        res.render('viewhikes', {
-            results
-        });
-    } catch (err) {
-        return res.status(500).json(err)
-    }
+router.get("/", async (req, res) => {
+  try {
+    const location = req.query.location;
+    const length = req.query.length;
+    const difficulty = req.query.difficulty;
+    const filteredHikes = await Hike.findAll({
+      where: {
+        location: location,
+        length: length,
+        difficulty: difficulty,
+      },
+    });
+    const results = filteredHikes.map((hike) => hike.get({ plain: true }));
+    res.render("viewhikes", {
+      results,
+    });
+  } catch (err) {
+    return res.status(500).json(err);
+  }
 });
 
 //<====== desmond =======>
-router.get('/', async (req, res) => {
-
-    try {
-        const hikeData = await Hike.findAll({
-
-        });
-        res.status(200).json(hikeData);
-    } catch (err) {
-        res.status(500).json(err);
-    }
-
+router.get("/", async (req, res) => {
+  try {
+    const hikeData = await Hike.findAll({});
+    res.status(200).json(hikeData);
+  } catch (err) {
+    res.status(500).json(err);
+  }
 });
 
 // <====== desmond ======>
-router.get('/:id', async (req, res) => {
-    // find one category by its `id` value
+router.get("/:id", async (req, res) => {
+  // find one category by its `id` value
 
+  try {
+    const hikeData = await Hike.findByPk(req.params.id, {
+      include: [{ model: Comment }],
+    });
 
-    try {
-        const hikeData = await Hike.findByPk(req.params.id, {
-
-            include: [{ model: Comment }]
-        });
-
-        if (!hikeData) {
-
-            res.status(404).json({ message: 'No hike found with this id!' });
-            return;
-        }
-
-        res.status(200).json(hikeData);
-    } catch (err) {
-        res.status(500).json(err);
+    if (!hikeData) {
+      res.status(404).json({ message: "No hike found with this id!" });
+      return;
     }
+
+    res.status(200).json(hikeData);
+  } catch (err) {
+    res.status(500).json(err);
+  }
 });
 
 //<====== lincoln ======>
 router.post("/", async (req, res) => {
-    await Hike.create({
-        title: req.body.hiketitle,
-        description: req.body.hikedescription,
-        user_id: req.session.user_id,
-    });
-    res.redirect("back");
+  await Hike.create({
+    title: req.body.hiketitle,
+    description: req.body.hikedescription,
+    user_id: req.session.user_id,
+  });
+  res.redirect("back");
 });
 
 //   router.put('/:id', async (req, res) => {
@@ -111,23 +104,26 @@ router.post("/", async (req, res) => {
 //         res.json(err);
 //       });
 
-//   });
+//});
 
 //<====== lincoln ======>
 router.put("profile/:id", async (req, res) => {
-    await Hike.update(
-        {
-            title: req.body.hiketitle,
-            description: req.body.hikedescription,
-        },
-        {
-            where: { id: req.params.id },
-        }
-    );
-    res.redirect("/profile");
+  await Hike.update(
+    {
+      title: req.body.hiketitle,
+      description: req.body.hikedescription,
+      location: req.body.location,
+      difficulty: req.body.difficulty,
+      max_altitude: req.body.max_altitude,
+      length: req.body.length,
+      rating: req.body.rating,
+    },
+    {
+      where: { id: req.params.id },
+    }
+  );
+  res.redirect("/profile");
 });
-
-
 
 //   router.delete('/:id', async (req, res) => {
 //     // delete a hike by its `id` value
@@ -152,28 +148,27 @@ router.put("profile/:id", async (req, res) => {
 //   });
 
 //<====== lincoln ======>
-router.delete('/:id', async (req, res) => {
-
-    await Hike.destroy({
-        where: {
-            id: req.params.id
-        }
-    })
-    res.redirect("/profile");
+router.delete("/:id", async (req, res) => {
+  await Hike.destroy({
+    where: {
+      id: req.params.id,
+    },
+  });
+  res.redirect("/profile");
 });
 
 // <====== desmond ======>
 router.get("/:id", async (req, res) => {
-    let hikePost = await Hike.findOne({
-        where: {
-            id: req.params.id,
-        },
-    });
-    hikePost = hikePost.get({ plain: true });
-    console.log(hikePost)
-    res.render("hike_details", {
-        hikePost,
-    });
+  let hikePost = await Hike.findOne({
+    where: {
+      id: req.params.id,
+    },
+  });
+  hikePost = hikePost.get({ plain: true });
+  console.log(hikePost);
+  res.render("hike_details", {
+    hikePost,
+  });
 });
 
-module.exports = router
+module.exports = router;
