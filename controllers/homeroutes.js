@@ -1,5 +1,6 @@
 const router = require('express').Router();
 const { Comment, Hike, User } = require(`../models`);
+//const withAuth = require("../../util/auth");
 
 router.get("/", async (req, res) => {
 
@@ -51,6 +52,48 @@ router.get("/profile",  async (req, res) => {
     });
   });
 
+  router.post("/profile", async (req, res) => {
+    await Hike.create({
+        name: req.body.hikename,
+        description: req.body.hikedescription,
+        location: req.body.hikelocation,
+        difficulty: req.body.hikedifficulty,
+        max_altitude: req.body.hikealtitude,
+        length: req.body.hikelength,
+        rating: req.body.hikerating,
+        user_id: req.session.user_id,
+    });
+    res.redirect("back");
+  });
+
+  router.put("/profile/:id", async (req, res) => {
+    await Hike.update(
+      {
+        name: req.body.hikename,
+        location: req.body.location,
+        difficulty: req.body.difficulty,
+        description: req.body.hikedescription,
+        
+        
+        max_altitude: req.body.max_altitude,
+        length: req.body.length,
+        rating: req.body.rating,
+      },
+      {
+        where: { id: req.params.id },
+      }
+    );
+    res.redirect("/profile");
+  });
+
+  router.delete("/profile/:id", async (req, res) => {
+    await Hike.destroy({
+      where: {
+        id: req.params.id,
+      },
+    });
+    res.redirect("/profile");
+  });
   // <====== harrys filter code ======>
 router.get('/filter', async (req, res) => {
   try {

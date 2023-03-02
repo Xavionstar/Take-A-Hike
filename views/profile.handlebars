@@ -6,15 +6,14 @@
     <div class="card mt-4">
       <div class="card-body">
         <h5 class="card-title"> <strong>Hike Name: </strong>{{hike.name}}</h5>
-        <p class="card-text"> <strong>Hike Description: </strong>{{hike.description}}</p>
         <p class="card-text"> <strong>Location: </strong>{{hike.location}}</p>
         <p class="card-text"> <strong>Difficulty 1-5: </strong>{{hike.difficulty}}</p>
-        <p class="card-text"> <strong>Description: </strong>{{hike.description}}</p>
         <p class="card-text"> <strong>Max Altitude: </strong>{{hike.max_altitude}}</p>
         <p class="card-text"> <Strong>Length in hours: </Strong>{{hike.length}}</p>
         <p class="card-text"> <strong>Rating 1-5: </strong>{{hike.rating}}</p>
+        <p class="card-text"> <strong>Hike Description: </strong>{{hike.description}}</p>
         <a href="/profile/{{hike.id}}" class="btn btn-primary">Edit Post</a>
-        <form class="deleteButton" method="POST" action="/dashboard/{{hike.id}}?_method=DELETE">
+        <form class="deleteButton" method="POST" action="/profile/{{hike.id}}?_method=DELETE">
         <button type="submit" class="btn btn-danger">Delete Post</button>
         </form>
       </div>
@@ -28,21 +27,28 @@
 
     <div class="card mt-4 col-sm-12 mb-3 mb-sm-0">
       <div class="card-body">
-        <h5>Add a New Hike</h5>
-        <form method="post" action="/dashboard">
-        <label for="newHikePostTitleTextArea"> Hike Title</label>
-          <textarea id="newHikePostTitleTextArea" class="form-control " name="hiketitle" rows="3"></textarea>
-
-           
+        <h5>Post a New Hike </h5>
+        <form method="POST" action="/profile">
+        <label for="postHikeNameTextArea"> <strong>Hike name</strong> </label>
+          <input type="text"  id="postHikeNameTextArea" class="form-control " name="hikename" rows="3" >
+        <label for="postHikeLocationTextArea"> <strong>Hike Location</strong> </label>
+          <input type="text"  id="postHikeLocationTextArea" class="form-control " name="hikelocation" rows="3" >
+        <label for="postHikeDifficultyTextArea"> <strong>Hike Difficulty</strong> </label>
+          <input type="text"  id="postHikeDifficultyTextArea" class="form-control " name="hikedifficulty" rows="3" >
+        <label for="postHikeAltitudeTextArea"> <strong>Hike Altitude</strong> </label>
+          <input type="text"  id="postHikeAltitudeTextArea" class="form-control " name="hikealtitude" rows="3" >
+        <label for="postHikeLengthTextArea"> <strong>Hike Length</strong> </label>
+          <input type="text"  id="postHikeLengthTextArea" class="form-control " name="hikelength" rows="3" >
+        <label for="postHikeRatingTextArea"> <strong>Hike Rating</strong> </label>
+          <input type="text"  id="postHikeRatingTextArea" class="form-control " name="hikerating" rows="3" > 
         
-        <label for="newHikePostContentTextArea">Hike Details </label>
+        <label for="postHikeDescriptionTextArea"> <strong>Hike Description</strong> </label>        
         
-        
-          <textarea id="newHikePostContentTextArea" class="form-control " name="hikedescription" rows="3"></textarea>
+          <textarea id="postHikeDescriptionTextArea" class="form-control " name="hikedescription" rows="3" >{{hike.description}}</textarea>
 
           <button type="submit" class="btn btn-primary mt-4 mb-3">Submit</button> 
+          
         </form>
         
       </div>
-    </div>
   </div>
