@@ -1,7 +1,6 @@
 const router = require("express").Router();
 const { Comment, Hike, User } = require(`../../models`);
 
-<<<<<<< HEAD
 router.get("hike/:id", async (req, res) => {
     let hikePost = await Hike.findOne({
         where: {
@@ -13,20 +12,6 @@ router.get("hike/:id", async (req, res) => {
         hikePost,
     });
 });
-=======
-// router.get("/:id", async (req, res) => {
-//   let hikePost = await Hike.findOne({
-//     where: {
-//       id: req.params.id,
-//     },
-//   });
-//   hikePost = hikePost.get({ plain: true });
-//   res.render("hikePost", {
-//     hikePost,
-//   });
-// });
-
->>>>>>> origin/main
 
 
 //<====== desmond =======>
@@ -65,14 +50,7 @@ router.get('api/hike/:id', async (req, res) => {
 });
 
 //<====== lincoln ======>
-router.post("/", async (req, res) => {
-  await Hike.create({
-    title: req.body.hiketitle,
-    description: req.body.hikedescription,
-    user_id: req.session.user_id,
-  });
-  res.redirect("back");
-});
+
 
 //   router.put('/:id', async (req, res) => {
 //     // update a category by its `id` value
@@ -109,10 +87,12 @@ router.post("/", async (req, res) => {
 router.put("profile/:id", async (req, res) => {
   await Hike.update(
     {
-      title: req.body.hiketitle,
-      description: req.body.hikedescription,
+      name: req.body.hikename,
       location: req.body.location,
       difficulty: req.body.difficulty,
+      description: req.body.hikedescription,
+      
+      
       max_altitude: req.body.max_altitude,
       length: req.body.length,
       rating: req.body.rating,
@@ -124,37 +104,8 @@ router.put("profile/:id", async (req, res) => {
   res.redirect("/profile");
 });
 
-//   router.delete('/:id', async (req, res) => {
-//     // delete a hike by its `id` value
 
-//     try {
-//       const hikeData = await Hike.destroy({
-//         where: {
-//           id: req.params.id
-//         }
-//       });
 
-//       if (!hikeData) {
-//         res.status(404).json({ message: 'No hike found with this id!' });
-//         return;
-//       }
-
-//       res.status(200).json(hikeData);
-//     } catch (err) {
-//       res.status(500).json(err);
-//     }
-
-//   });
-
-//<====== lincoln ======>
-router.delete("/:id", async (req, res) => {
-  await Hike.destroy({
-    where: {
-      id: req.params.id,
-    },
-  });
-  res.redirect("/profile");
-});
 
 // <====== desmond ======>
 router.get("/:id", async (req, res) => {
