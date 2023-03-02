@@ -13,29 +13,7 @@ const { Comment, Hike, User } = require(`../../models`);
 //     });
 // });
 
-// <====== harrys filter code ======>
-router.get('/filter', async (req, res) => {
-    try {
-        const hikelocation = req.query.location;
-        const length = req.query.length;
-        const difficulty = req.query.difficulty;
-        let filter={}
-        if (hikelocation) {filter.location = req.query.location};
-        if (length) {filter.length = req.query.length};
-        if (difficulty) {filter.difficulty = req.query.difficulty};
-        const filteredHikes = await Hike.findAll({
-            where: filter
-        })
-        const posts = filteredHikes.map((hike) => hike.get({ plain: true }))
-        res.status(200).render("viewhikes", {
-            posts: posts
-        })
-        // console.log(posts)
-        // return res.status(200).json(posts)
-    } catch (err) {
-        return res.status(500).json(err)
-    }
-});
+
 
 //<====== desmond =======>
 router.get('/', async (req, res) => {
