@@ -1,7 +1,7 @@
 const router = require('express').Router();
 const { Comment, Hike, User } = require(`../../models`);
 
-router.get("/:id", async (req, res) => {
+router.get("hike/:id", async (req, res) => {
     let hikePost = await Hike.findOne({
         where: {
             id: req.params.id,
@@ -49,8 +49,10 @@ router.get('/', async (req, res) => {
 
 });
 
+
+
 // <====== desmond ======>
-router.get('/:id', async (req, res) => {
+router.get('api/hike/:id', async (req, res) => {
     // find one category by its `id` value
 
 
@@ -59,6 +61,7 @@ router.get('/:id', async (req, res) => {
 
             include: [{ model: Comment }]
         });
+        console.log(hikeData)
 
         if (!hikeData) {
 
