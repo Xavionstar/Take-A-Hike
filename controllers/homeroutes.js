@@ -38,24 +38,29 @@ router.get("/viewhikes", async (req, res) => {
 >>>>>>> origin/main
 });
 
-router.get("hike/:id",  async (req, res) => {
-    let post = await Hike.findOne({
+router.get("/profile/:id",  async (req, res) => {
+    let hike = await Hike.findOne({
       where: {
         id: req.params.id,
       },
     });
-    post = post.get({ plain: true });
+    hike = hike.get({ plain: true });
     res.render("edithike", {
-      post,
+      hike,
       logged_in: req.session.logged_in
     });
   });
 
 router.get("/profile",  async (req, res) => {
-    let hikeData = await Hike.findAll();
+    let hikeData = await Hike.findAll({
+      where: {
+        user_id: req.session.user_id,
+      },
+    });
     hikeData = hikeData.map((singleHikeData) =>
       singleHikeData.get({ plain: true })
     );
+    console.log(hikeData)
     res.render("profile", {
       hikes : hikeData,
       style: 'profile.css',

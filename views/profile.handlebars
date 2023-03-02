@@ -5,9 +5,15 @@
 <div class="col-sm-6 mb-3 mb-sm-0">
     <div class="card mt-4">
       <div class="card-body">
-        <h5 class="card-title">{{hike.title}}</h5>
-        <p class="card-text">{{hike.description}}</p>
-        <a href="/dashboard/{{hike.id}}" class="btn btn-primary">Edit Post</a>
+        <h5 class="card-title"> <strong>Hike Name: </strong>{{hike.name}}</h5>
+        <p class="card-text"> <strong>Hike Description: </strong>{{hike.description}}</p>
+        <p class="card-text"> <strong>Location: </strong>{{hike.location}}</p>
+        <p class="card-text"> <strong>Difficulty 1-5: </strong>{{hike.difficulty}}</p>
+        <p class="card-text"> <strong>Description: </strong>{{hike.description}}</p>
+        <p class="card-text"> <strong>Max Altitude: </strong>{{hike.max_altitude}}</p>
+        <p class="card-text"> <Strong>Length in hours: </Strong>{{hike.length}}</p>
+        <p class="card-text"> <strong>Rating 1-5: </strong>{{hike.rating}}</p>
+        <a href="/profile/{{hike.id}}" class="btn btn-primary">Edit Post</a>
         <form class="deleteButton" method="POST" action="/dashboard/{{hike.id}}?_method=DELETE">
         <button type="submit" class="btn btn-danger">Delete Post</button>
         </form>
