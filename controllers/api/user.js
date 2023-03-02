@@ -4,14 +4,12 @@ const router = express.Router();
 
 // Login
 router.post('/login', async (req, res) => {
-    // console.log("from post/login");
     try {
       const userData = await User.findOne({ 
         where: { 
           email: req.body.email, 
         } 
       });
-// console.log(userData.id + " *****  " + userData.email);
 
       if (!userData) {
         res
@@ -19,7 +17,6 @@ router.post('/login', async (req, res) => {
           .json({ message: 'Incorrect email or password, please try again' });
         return;
       }
-// console.log(userData.id + " ////*****  " + userData.email);
 
       const validPassword = await userData.checkPassword(req.body.password);
 
@@ -29,7 +26,6 @@ router.post('/login', async (req, res) => {
           .json({ message: 'Incorrect email or password, please try again' });
         return;
       }
-// console.log(userData.id + " ////  " + userData.email);
 
       req.session.save(() => {
         req.session.user_id = userData.id;
@@ -59,14 +55,12 @@ router.post('/login', async (req, res) => {
   
   // CREATE new user
 router.post('/signup', async (req, res) => {
-  // console.log("from post/new user");
   try {
     const userData = await User.create({
       email: req.body.email,
       password: req.body.password,
     });
      console.log("the new email " + req.body.email);
-    // Set up sessions with a 'loggedIn' variable set to `true`
     req.session.save(() => {
       req.session.logged_in = true;
 

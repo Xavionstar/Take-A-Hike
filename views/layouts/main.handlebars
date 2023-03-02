@@ -25,15 +25,17 @@
           <a class="nav-link active" aria-current="page" href="/profile">Profile</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="/login">Login</a>
-        </li>
-        <li class="nav-item">
           <a class="nav-link active" aria-current="page" href="/viewhikes">ViewHikes</a>
         </li>
+        {{#if logged_in}}
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">Logout</a>
+          <a class="nav-link active logout" aria-current="page" href="/">Logout</a>
         </li>
-        
+        {{else}}
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="/login">Login</a>
+        </li>
+        {{/if}}
       </ul>
       <form class="d-flex" role="search">
         <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
@@ -44,6 +46,8 @@
 </nav>
  {{{body}}}
 
-
+{{#if logged_in}}
+<script src="/js/logout.js"></script>
+{{/if}}
 </body>
 </html>
