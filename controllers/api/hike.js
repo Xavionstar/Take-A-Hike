@@ -1,7 +1,6 @@
 const router = require('express').Router();
 const { Comment, Hike, User } = require(`../../models`);
 
-<<<<<<< HEAD
 router.get("hike/:id", async (req, res) => {
     let hikePost = await Hike.findOne({
         where: {
@@ -13,20 +12,6 @@ router.get("hike/:id", async (req, res) => {
         hikePost,
     });
 });
-=======
-// router.get("/:id", async (req, res) => {
-//     let hikePost = await Hike.findOne({
-//         where: {
-//             id: req.params.id,
-//         },
-//     });
-//     hikePost = hikePost.get({ plain: true });
-//     res.render("hikePost", {
-//         hikePost,
-//     });
-// });
-
->>>>>>> origin/main
 
 
 //<====== desmond =======>
