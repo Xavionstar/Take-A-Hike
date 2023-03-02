@@ -9,10 +9,10 @@
     <ul class="navbar-nav mr-auto">
       <li class="nav-item dropdown">
         <select class="form-select" aria-label="Default select example" id="diff">
-          <option value= selected>by difficulty</option>
-          <option value="easy">Easy</option>
-          <option value="medium">Medium</option>
-          <option value="hard">Hard</option>
+          <option value="" selected>by difficulty</option>
+          <option value=1>1</option>
+          <option value=2>2</option>
+          <option value=3>3</option>
         </select>
       </li>
       <li class="nav-item dropdown">
@@ -40,18 +40,7 @@
 <div class="row">
 
   {{#each posts as |post|}}
-  <div class="col-sm-6 mb-3 mb-sm-0">
-    <div class="card mt-4">
-      <div class="card-body">
-        <h5 class="card-title">Name- {{post.name}}</h5>
-        <p class="card-text">{{post.location}}</p>
-        <p class="card-text">{{post.difficulty}}</p>
-        <p class="card-text">{{post.description}}</p>
-        <p class="card-text">{{post.max_altitude}}</p>
-        <p class="card-text">{{post.length}}</p>
-      </div>
-    </div>
-  </div>
+  {{>hike-card}}
   {{/each}}
 </div>
 
