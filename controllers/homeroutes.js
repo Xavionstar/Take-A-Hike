@@ -22,7 +22,11 @@ router.get('/signup',(req, res) => {
 res.render('signup');
 });
 
-router.get("hike/:id",  async (req, res) => {
+
+
+router.get("/profile/:id",  async (req, res) => {
+    
+
     let post = await Hike.findOne({
       where: {
         id: req.params.id,
