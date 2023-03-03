@@ -1,7 +1,7 @@
 const router = require('express').Router();
-const { Comment, Hike, User } = require('../models');
+// const { Comment, Hike, User } = require('../models');
 
-// const Hike = require('../models/Hike');
+const Hike = require('../models/Hike');
 
 const { Op } = require('sequelize');
 
@@ -33,14 +33,14 @@ router.get('/signup', (req, res) => {
 router.get("/profile/:id",  async (req, res) => {
     
 
-    let post = await Hike.findOne({
+    let hike = await Hike.findOne({
       where: {
         id: req.params.id,
       },
     });
-    post = post.get({ plain: true });
+    hike = hike.get({ plain: true });
     res.render("edithike", {
-      post,
+      hike,
       logged_in: req.session.logged_in
     });
   });
@@ -100,9 +100,8 @@ router.get("/profile",  async (req, res) => {
     });
     res.redirect("/profile");
   });
-
   // <====== harrys filter code ======>
-router.get('/viewhikes', async (req, res) => {
+router.get('/filter', async (req, res) => {
   try {
     //<------ grabs each query parameter and assigns it to a value ------>
     const hike = req.query.location;
@@ -127,21 +126,6 @@ router.get('/viewhikes', async (req, res) => {
   } catch (err) {
     return res.status(500).json(err)
   }
-});
-
-// <====== desmond get hike by id ======>
-router.get("/hike/:id", async (req, res) => {
-  let hikePost = await Hike.findOne({
-    where: {
-      id: req.params.id,
-    },
-    include: [{ model: Comment }]
-  });
-  hikePost = hikePost.get({ plain: true });
-  console.log(hikePost);
-  res.render("hike_details", {
-    hikePost,
-  });
 });
 
 module.exports = router
