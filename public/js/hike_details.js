@@ -1,5 +1,6 @@
 // set up public folder. 
 // set up sessions and target the textbox in the comments. id specific. api requests, post request.
+<<<<<<< HEAD
 console.log("test")
 
 // Desmonds code. attaching comment to page with on click submit button.
@@ -26,3 +27,6 @@ async function newFormHandler(event) {
   
   document.querySelector('.comment').addEventListener('submit', newFormHandler);
     
+=======
+// console.log("test")
+>>>>>>> origin/main
