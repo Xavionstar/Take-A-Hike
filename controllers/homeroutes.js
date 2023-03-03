@@ -43,7 +43,7 @@ router.get("/profile/:id",  async (req, res) => {
 router.get("/profile",  async (req, res) => {
     let hikeData = await Hike.findAll({
       
-        where: { user_id: req.session.user_id },
+        where: { user_id: req.session.id },
       
     });
     hikeData = hikeData.map((singleHikeData) =>
