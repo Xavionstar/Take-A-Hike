@@ -1,7 +1,7 @@
 const router = require('express').Router();
-// const { Comment, Hike, User } = require('../models');
+const { Comment, Hike, User } = require('../models');
 
-const Hike = require('../models/Hike');
+// const Hike = require('../models/Hike');
 
 const { Op } = require('sequelize');
 
