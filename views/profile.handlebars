@@ -1,6 +1,4 @@
 <div class="row">
-
-
 {{#each hikes as |hike|}}
 <div class="col-sm-6 mb-3 mb-sm-0">
     <div class="card mt-4">
@@ -10,7 +8,6 @@
         <p class="card-text"> <strong>Difficulty 1-5: </strong>{{hike.difficulty}}</p>
         <p class="card-text"> <strong>Max Altitude: </strong>{{hike.max_altitude}}</p>
         <p class="card-text"> <Strong>Length in hours: </Strong>{{hike.length}}</p>
-        {{!-- <p class="card-text"> <strong>Rating 1-5: </strong>{{hike.rating}}</p> --}}
         <p class="card-text"> <strong>Hike Description: </strong>{{hike.description}}</p>
                 {{#if hike.rating}}
     Your Rating:
@@ -75,3 +72,4 @@
         
       </div>
   </div>
+</div>
