@@ -100,8 +100,9 @@ router.get("/profile",  async (req, res) => {
     });
     res.redirect("/profile");
   });
+
   // <====== harrys filter code ======>
-router.get('/filter', async (req, res) => {
+router.get('/viewhikes', async (req, res) => {
   try {
     //<------ grabs each query parameter and assigns it to a value ------>
     const hike = req.query.location;
@@ -126,6 +127,21 @@ router.get('/filter', async (req, res) => {
   } catch (err) {
     return res.status(500).json(err)
   }
+});
+
+// <====== desmond get hike by id ======>
+router.get("/hike/:id", async (req, res) => {
+  let hikePost = await Hike.findOne({
+    where: {
+      id: req.params.id,
+    },
+    include: [{ model: Comment }]
+  });
+  hikePost = hikePost.get({ plain: true });
+  console.log(hikePost);
+  res.render("hike_details", {
+    hikePost,
+  });
 });
 
 module.exports = router
