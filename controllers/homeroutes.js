@@ -27,7 +27,7 @@ router.get('/signup', (req, res) => {
 
 
 
-router.get("/profile/:id", async (req, res) => {
+router.get("/profile/:id", async (req, res) => {})
 
 
 
