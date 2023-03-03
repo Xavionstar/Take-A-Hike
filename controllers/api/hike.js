@@ -15,28 +15,7 @@ router.get("/", async (req, res) => {
 
 
 
-// <====== desmond ======>
-// router.get('api/hike/:id', async (req, res) => {
-//     // find one category by its `id` value
 
-
-//     try {
-//         const hikeData = await Hike.findByPk(req.params.id, {
-
-//             include: [{ model: Comment }]
-//         });
-//         console.log(hikeData)
-
-//     if (!hikeData) {
-//       res.status(404).json({ message: "No hike found with this id!" });
-//       return;
-//     }
-
-//     res.status(200).json(hikeData);
-//   } catch (err) {
-//     res.status(500).json(err);
-//   }
-// });
 
 //<====== lincoln ======>
 
@@ -96,7 +75,7 @@ router.put("profile/:id", async (req, res) => {
 
 
 
-// <====== desmond ======>
+// <====== desmond get hike by id ======>
 router.get("/:id", async (req, res) => {
   let hikePost = await Hike.findOne({
     where: {

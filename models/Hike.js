@@ -40,6 +40,12 @@ Hike.init(
       type: DataTypes.INTEGER,
       
     },
+
+    // image: {
+    //   type: DataTypes.STRING,
+    //   allowNull: true,
+    
+    // },
     user_id: {
       type: DataTypes.INTEGER,
       allowNull: true,
