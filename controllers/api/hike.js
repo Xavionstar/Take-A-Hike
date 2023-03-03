@@ -38,60 +38,9 @@ router.get('api/hike/:id', async (req, res) => {
   }
 });
 
-//<====== lincoln ======>
 
 
-//   router.put('/:id', async (req, res) => {
-//     // update a category by its `id` value
-//     await Hike.update(
-//       {
-//         // All the fields you can update and the data attached to the request body.
-//         hike_name: req.body.name,
-//         hike_location: req.body.location,
-//         hike_difficulty: req.body.difficulty,
-//         hike_description: req.body.description,
-//         hike_max_altitude: req.body.max_altitude,
-//         hike_length: req.body.length,
-//         hike_rating: req.body.rating
 
-//       },
-//       {
-//         // Gets a hike based on the hike id given in the request parameters
-//         where: {
-//           id: req.params.id,
-//         },
-//       }
-//     )
-//       .then((updatedHike) => {
-//         res.json(updatedHike);
-//       })
-//       .catch((err) => {
-//         console.log(err);
-//         res.json(err);
-//       });
-
-//});
-
-//<====== lincoln ======>
-router.put("profile/:id", async (req, res) => {
-  await Hike.update(
-    {
-      name: req.body.hikename,
-      location: req.body.location,
-      difficulty: req.body.difficulty,
-      description: req.body.hikedescription,
-      
-      
-      max_altitude: req.body.max_altitude,
-      length: req.body.length,
-      rating: req.body.rating,
-    },
-    {
-      where: { id: req.params.id },
-    }
-  );
-  res.redirect("/profile");
-});
 
 
 

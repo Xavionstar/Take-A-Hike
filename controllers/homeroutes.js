@@ -29,15 +29,26 @@ router.get('/signup', (req, res) => {
 });
 
 
+//this route will get the specific hike you want to edit and take you to a page with just it on it
+router.get("/profile/:id",  async (req, res) => {
+    
 
-router.get("/profile/:id", async (req, res) => {})
-
-
-
+    let post = await Hike.findOne({
+      where: {
+        id: req.params.id,
+      },
+    });
+    post = post.get({ plain: true });
+    res.render("edithike", {
+      post,
+      logged_in: req.session.logged_in
+    });
+  });
+//this is the route that takes the user to their own profile page
 router.get("/profile",  async (req, res) => {
     let hikeData = await Hike.findAll({
       
-        where: { user_id: req.session.id },
+        where: { user_id: req.session.user_id },
       
     });
     hikeData = hikeData.map((singleHikeData) =>
@@ -45,82 +56,52 @@ router.get("/profile",  async (req, res) => {
     );
     res.render("profile", {
       hikes : hikeData,
-      style: 'profile.css',
+      css: 'profile.css',
       logged_in: req.session.logged_in
     });
-  let post = await Hike.findOne({
-    where: {
-      id: req.params.id,
-    },
   });
-  post = post.get({ plain: true });
-  res.render("edithike", {
-    post,
-    logged_in: req.session.logged_in
+//this route lets you create a new hike
+  router.post("/profile", async (req, res) => {
+    await Hike.create({
+        name: req.body.hikename,
+        description: req.body.hikedescription,
+        location: req.body.hikelocation,
+        difficulty: req.body.hikedifficulty,
+        max_altitude: req.body.hikealtitude,
+        length: req.body.hikelength,
+        rating: req.body.hikerating,
+        user_id: req.session.user_id,
+    });
+    res.redirect("back");
   });
-});
-
-router.get("/profile", async (req, res) => {
-  let hikeData = await Hike.findAll({
-
-    where: { user_id: req.session.user_id },
-
+//this is the route that edits and updates the hike and then sends u back to profile
+  router.put("/profile/:id", async (req, res) => {
+    await Hike.update(
+      { name: req.body.hikename,
+        location: req.body.hikelocation,
+        difficulty: req.body.hikedifficulty,
+        description: req.body.hikedescription,
+        max_altitude: req.body.hikealtitude,
+        length: req.body.hikelength,
+        rating: req.body.hikerating,
+      },
+      {
+        where: { id: req.params.id },
+      }
+    );
+    res.redirect("/profile");
   });
-  hikeData = hikeData.map((singleHikeData) =>
-    singleHikeData.get({ plain: true })
-  );
-  res.render("profile", {
-    hikes: hikeData,
-    style: 'profile.css',
-    logged_in: req.session.logged_in
+//this route deletes hikes
+  router.delete("/profile/:id", async (req, res) => {
+    await Hike.destroy({
+      where: {
+        id: req.params.id,
+      },
+    });
+    res.redirect("/profile");
   });
-});
-
-router.post("/profile", async (req, res) => {
-  await Hike.create({
-    name: req.body.hikename,
-    description: req.body.hikedescription,
-    location: req.body.hikelocation,
-    difficulty: req.body.hikedifficulty,
-    max_altitude: req.body.hikealtitude,
-    length: req.body.hikelength,
-    rating: req.body.hikerating,
-    user_id: req.session.user_id,
-  });
-  res.redirect("back");
-});
-
-router.put("/profile/:id", async (req, res) => {
-  await Hike.update(
-    {
-      name: req.body.hikename,
-      location: req.body.location,
-      difficulty: req.body.difficulty,
-      description: req.body.hikedescription,
-
-
-      max_altitude: req.body.max_altitude,
-      length: req.body.length,
-      rating: req.body.rating,
-    },
-    {
-      where: { id: req.params.id },
-    }
-  );
-  res.redirect("/profile");
-});
-
-router.delete("/profile/:id", async (req, res) => {
-  await Hike.destroy({
-    where: {
-      id: req.params.id,
-    },
-  });
-  res.redirect("/profile");
-});
-
-// <====== viewhikes view  ======>
-router.get('/viewhikes', async (req, res) => {
+  // <====== harrys filter code ======>
+router.get('/filter', async (req, res) => {
   try {
     //<------ grabs each query parameter and assigns it to a value ------>
     const hike = req.query.location;
