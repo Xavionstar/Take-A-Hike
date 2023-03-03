@@ -10,12 +10,28 @@
         <p class="card-text"> <strong>Difficulty 1-5: </strong>{{hike.difficulty}}</p>
         <p class="card-text"> <strong>Max Altitude: </strong>{{hike.max_altitude}}</p>
         <p class="card-text"> <Strong>Length in hours: </Strong>{{hike.length}}</p>
-        <p class="card-text"> <strong>Rating 1-5: </strong>{{hike.rating}}</p>
+        {{!-- <p class="card-text"> <strong>Rating 1-5: </strong>{{hike.rating}}</p> --}}
         <p class="card-text"> <strong>Hike Description: </strong>{{hike.description}}</p>
+                {{#if hike.rating}}
+    Your Rating:
+    {{hike.rating}} ⭐'s
+ 
+  {{else}}
+        <select class="form-select" name="hikerating" aria-label="Default select example" id = "selectBox">
+  <option selected>Choose a rating 1-5 stars⭐</option>
+  <option value="1">One Stars⭐</option>
+  <option value="2">Two Stars⭐⭐</option>
+  <option value="3">Three Stars⭐⭐⭐</option>
+  <option value="4">Four Stars⭐⭐⭐⭐</option>
+  <option value="5">Five Stars⭐⭐⭐⭐⭐</option>
+</select>
+{{/if}}
+<div class="overlay-right d-flex justify-content-center">
         <a href="/profile/{{hike.id}}" class="btn btn-primary">Edit Post</a>
         <form class="deleteButton" method="POST" action="/profile/{{hike.id}}?_method=DELETE">
         <button type="submit" class="btn btn-danger">Delete Post</button>
         </form>
+        </div>
       </div>
     </div>
   </div>
@@ -40,7 +56,14 @@
         <label for="postHikeLengthTextArea"> <strong>Hike Length</strong> </label>
           <input type="text"  id="postHikeLengthTextArea" class="form-control " name="hikelength" rows="3" >
         <label for="postHikeRatingTextArea"> <strong>Hike Rating</strong> </label>
-          <input type="text"  id="postHikeRatingTextArea" class="form-control " name="hikerating" rows="3" > 
+          <select class="form-select" name="hikerating" aria-label="Default select example" id = "selectBox">
+  <option selected>Choose a rating 1-5 stars⭐</option>
+  <option value="1">One Stars⭐</option>
+  <option value="2">Two Stars⭐⭐</option>
+  <option value="3">Three Stars⭐⭐⭐</option>
+  <option value="4">Four Stars⭐⭐⭐⭐</option>
+  <option value="5">Five Stars⭐⭐⭐⭐⭐</option>
+</select> 
         
         <label for="postHikeDescriptionTextArea"> <strong>Hike Description</strong> </label>        
         

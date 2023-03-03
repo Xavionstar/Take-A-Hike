@@ -24,7 +24,7 @@ res.render('signup');
 });
 
 
-
+//this route will get the specific hike you want to edit and take you to a page with just it on it
 router.get("/profile/:id",  async (req, res) => {
     
 
@@ -39,7 +39,7 @@ router.get("/profile/:id",  async (req, res) => {
       logged_in: req.session.logged_in
     });
   });
-
+//this is the route that takes the user to their own profile page
 router.get("/profile",  async (req, res) => {
     let hikeData = await Hike.findAll({
       
@@ -51,11 +51,11 @@ router.get("/profile",  async (req, res) => {
     );
     res.render("profile", {
       hikes : hikeData,
-      style: 'profile.css',
+      css: 'profile.css',
       logged_in: req.session.logged_in
     });
   });
-
+//this route lets you create a new hike
   router.post("/profile", async (req, res) => {
     await Hike.create({
         name: req.body.hikename,
@@ -69,19 +69,16 @@ router.get("/profile",  async (req, res) => {
     });
     res.redirect("back");
   });
-
+//this is the route that edits and updates the hike and then sends u back to profile
   router.put("/profile/:id", async (req, res) => {
     await Hike.update(
-      {
-        name: req.body.hikename,
-        location: req.body.location,
-        difficulty: req.body.difficulty,
+      { name: req.body.hikename,
+        location: req.body.hikelocation,
+        difficulty: req.body.hikedifficulty,
         description: req.body.hikedescription,
-        
-        
-        max_altitude: req.body.max_altitude,
-        length: req.body.length,
-        rating: req.body.rating,
+        max_altitude: req.body.hikealtitude,
+        length: req.body.hikelength,
+        rating: req.body.hikerating,
       },
       {
         where: { id: req.params.id },
@@ -89,7 +86,7 @@ router.get("/profile",  async (req, res) => {
     );
     res.redirect("/profile");
   });
-
+//this route deletes hikes
   router.delete("/profile/:id", async (req, res) => {
     await Hike.destroy({
       where: {
