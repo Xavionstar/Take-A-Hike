@@ -1,84 +1,98 @@
+{{!-- Desmond's handlebars --}}
+
 <div class="row">
-  {{!-- "{{hikePost.img}}" something like this to target Hike's picture.--}} 
-<img src="https://www.wallpaperbetter.com/wallpaper/159/604/884/usa-washington-mount-baker-volcano-lake-reflection-morning-sunrise-forest-1080P-wallpaper.jpg" alt="Nature">
-<div class="col-sm-12 mb-3 mb-sm-0">
+  {{!-- "{{hikePost.img}}" something like this to target Hike's picture.--}}
+  <img
+    src="https://www.wallpaperbetter.com/wallpaper/159/604/884/usa-washington-mount-baker-volcano-lake-reflection-morning-sunrise-forest-1080P-wallpaper.jpg"
+    alt="Nature">
+  <div class="col-sm-12 mb-3 mb-sm-0">
     <div class="card mt-4">
       <div class="card-body">
         <h5 class="card-title">{{hikePost.name}}</h5>
-        <p class="card-text">Location: {{hikePost.location}}</p>
-        <p class="card-text">Difficulty 1-5: {{hikePost.difficulty}}</p>
-        <p class="card-text">Description: {{hikePost.description}}</p>
-        <p class="card-text">Max Altitude: {{hikePost.max_altitude}}</p>
-        <p class="card-text">Distance: {{hikePost.length}} miles</p>
-        <p class="card-text">Rating 1-5: {{hikePost.rating}}</p>
-        
-      </div>
-    </div>
-  </div>
-{{!-- how to get an average rating? --}}
-
-{{#if hikePost.rating}}
-        <div class="card">
-  <div class="card-body">
-    Your Rating:
-    {{hikePost.rating}} ⭐'s
-  </div>
-</div>
-        <div class="card">
-  <div class="card-body">
-    Average Rating:
-    {{hikePost.rating}} ⭐'s
-  </div>
-</div>
-
-        {{else}}
-       
-        
-</div>
-    <div class="card mt-4 col-sm-12 mb-3 mb-sm-0">
-      <div class="card-body">
-        <h5> Add a hike rating!</h5>
-        <form method="post" action="/hike_details/">
-          <select class="form-select" aria-label="Default select example" id = "selectBox">
-  <option selected>Choose a rating 1-5 stars⭐</option>
-  <option value="1">One Stars⭐</option>
-  <option value="2">Two Stars⭐⭐</option>
-  <option value="3">Three Stars⭐⭐⭐</option>
-  <option value="4">Four Stars⭐⭐⭐⭐</option>
-  <option value="5">Five Stars⭐⭐⭐⭐⭐</option>
-</select>
-
-          <button type="submit" class="btn btn-primary mt-4 mb-3">Submit</button> 
-        </form>
-        
-      </div>
-      {{/if}}
-
-
-    <div class="card mt-4 col-sm-12 mb-3 mb-sm-0">
-      <div class="card-body">
-        <h5> Add a comment!</h5>
-        <form method="post" action="/hike_details/">
-          <textarea class="form-control " name="comment" rows="3"></textarea>
-
-          <button type="submit" class="btn btn-primary mt-4 mb-3">Submit</button> 
-        </form>
-        
-      </div>
-
-      <div>
-        <div class="col-sm-12 mb-3 mb-sm-0">
-    <div class="card mt-4">
-      <div class="card-body">
-        <h5 class="card-title">Comments</h5>
-        
-        
-      </div>
+        <p class="card-text"><strong>Location:</strong> {{hikePost.location}}</p>
+        <p class="card-text"><strong>Difficulty 1-5:</strong> {{hikePost.difficulty}}</p>
+        <p class="card-text"><strong>Description:</strong> {{hikePost.description}}</p>
+        <p class="card-text"><strong>Max Altitude:</strong> {{hikePost.max_altitude}}</p>
+        <p class="card-text"><strong>Distance:</strong>{{hikePost.length}} miles</p>
+        <p class="card-text"><strong>Rating 1-5:</strong> {{hikePost.rating}}</p>
 
       </div>
     </div>
   </div>
+  {{!-- how to get an average rating? --}}
+
+  {{#if hikePost.rating}}
+  <div class="card">
+    <div class="card-body">
+      <strong>Your Rating:</strong>
+      {{hikePost.rating}} ⭐<strong>'s</strong>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-body">
+      User Ratings:
+      {{hikePost.rating}} ⭐'s
+    </div>
+  </div>
+
+  {{else}}
+
 
 </div>
 
-<script src="/js/hike_details.js"></script>
+{{!-- add a rating form --}}
+<div class="card mt-4 col-sm-12 mb-3 mb-sm-0">
+  <div class="card-body">
+    <h5> Add a hike rating!</h5>
+    <form method="post" action="/hike_details/">
+      <select class="form-select" aria-label="Default select example" id="selectBox">
+        <option selected>Choose a rating 1-5 stars⭐</option>
+        <option value="1">One Stars⭐</option>
+        <option value="2">Two Stars⭐⭐</option>
+        <option value="3">Three Stars⭐⭐⭐</option>
+        <option value="4">Four Stars⭐⭐⭐⭐</option>
+        <option value="5">Five Stars⭐⭐⭐⭐⭐</option>
+      </select>
+
+      <button type="submit" class="btn btn-primary mt-4 mb-3">Submit</button>
+    </form>
+
+  </div>
+ 
+  {{/if}}
+
+{{!-- add a comment form --}}
+  <div class="card mt-4 col-sm-12 mb-3 mb-sm-0">
+    <div class="card-body">
+      <h5> Add a comment!</h5>
+      <form method="post" action="/hike_details/">
+        <textarea class="form-control " name="comment" rows="3" id="commentData"></textarea>
+
+        <button type="submit" class="btn btn-primary mt-4 mb-3">Submit</button>
+      </form>
+
+    </div>
+{{!-- comment post card --}}
+    <div>
+      <div class="col-sm-12 mb-3 mb-sm-0">
+        <div class="card mt-4">
+          <div class="card-body">
+            <h5 class="card-title">Comments:</h5>
+            {{#each hikePost.comments}}
+            <div class="card">
+              <div class="card-body" >
+                {{this.content}}
+              </div>
+            </div>
+          {{/each}}
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <script src="/js/hike_details.js"></script>
+
+  

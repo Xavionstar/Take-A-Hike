@@ -15,11 +15,9 @@ router.get("/", async (req, res) => {
 
 
 
-// <====== desmond ======>
-router.get('api/hike/:id', async (req, res) => {
-    // find one category by its `id` value
 
 
+//<====== lincoln ======>
     try {
         const hikeData = await Hike.findByPk(req.params.id, {
 
@@ -35,8 +33,7 @@ router.get('api/hike/:id', async (req, res) => {
     res.status(200).json(hikeData);
   } catch (err) {
     res.status(500).json(err);
-  }
-});
+  };
 
 
 
@@ -45,12 +42,14 @@ router.get('api/hike/:id', async (req, res) => {
 
 
 
-// <====== desmond ======>
+
+// <====== desmond get hike by id ======>
 router.get("/:id", async (req, res) => {
   let hikePost = await Hike.findOne({
     where: {
       id: req.params.id,
     },
+    include: [{ model: Comment }]
   });
   hikePost = hikePost.get({ plain: true });
   console.log(hikePost);
