@@ -5,7 +5,7 @@
     "difficulty": 3,
     "description": "A beautiful hike",
     "max_altitude": 1400,
-    "length": 3,
+    "length": 4,
     "rating": 5,
     "user_id": 1
     
@@ -28,7 +28,7 @@
     "difficulty": 4,
     "description": "Hike was sick",
     "max_altitude": 4000,
-    "length": 3,
+    "length": 44,
     "rating": 4,
     "user_id": 3
   }
