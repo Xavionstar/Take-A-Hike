@@ -30,6 +30,21 @@ router.get('/signup', (req, res) => {
 router.get("/profile/:id", async (req, res) => {
 
 
+
+router.get("/profile",  async (req, res) => {
+    let hikeData = await Hike.findAll({
+      
+        where: { user_id: req.session.id },
+      
+    });
+    hikeData = hikeData.map((singleHikeData) =>
+      singleHikeData.get({ plain: true })
+    );
+    res.render("profile", {
+      hikes : hikeData,
+      style: 'profile.css',
+      logged_in: req.session.logged_in
+    });
   let post = await Hike.findOne({
     where: {
       id: req.params.id,

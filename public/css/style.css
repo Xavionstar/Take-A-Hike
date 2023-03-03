@@ -1,7 +1,50 @@
 
+*{
+  font-family:Verdana, Geneva, Tahoma, sans-serif;
+}
 .fa {
     padding: 10px, 20px, 10px, 20px;
     font-size: 20px;
     width: 40px;
     text-align: center;
   }
+
+  nav {
+    height: 100px;
+  }
+  nav ul li a {
+   margin-left: 50px;
+  } 
+
+nav ul li :hover {
+  box-shadow: 0.2em 0.5em 0.5em 0.4em grey;
+  transform: translateX(0.2em);
+}
+#login :hover {
+  box-shadow: none;
+  transform: none;
+  text-decoration:underline ;
+}
+
+/* Footer */
+footer {
+  width: 100%;
+  min-height: 10em;
+  position: fixed;
+  bottom:0;
+}
+
+footer ul li {
+  list-style-type: none; 
+  float: right;
+}
+
+footer ul li a{
+  display: flex;
+  margin-right: 100px;
+  color: white;
+}
+h5 {
+  margin-left: 210px;
+  color: white;
+}
