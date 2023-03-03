@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { Comment, Hike, User } = require('../../models');
+const { Comment } = require('../../models');
 
 module.exports = router
 // to add comment to hike by ID page use this get route. now add res.render to render comments on page. once log in is set up
