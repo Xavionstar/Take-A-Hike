@@ -1,11 +1,8 @@
 const router = require('express').Router();
 // const { Comment, Hike, User } = require('../models');
-
 const Hike = require('../models/Hike');
-
 const { Op } = require('sequelize');
-
-//const withAuth = require("../../util/auth");
+// const withAuth = require("../utils/auth");
 
 router.get("/", async (req, res) => {
 
@@ -48,7 +45,7 @@ router.get("/profile/:id",  async (req, res) => {
 router.get("/profile",  async (req, res) => {
     let hikeData = await Hike.findAll({
       
-        where: { user_id: req.session.user_id },
+        where: { user_id: req.session.id },
       
     });
     hikeData = hikeData.map((singleHikeData) =>
@@ -71,6 +68,7 @@ router.get("/profile",  async (req, res) => {
         length: req.body.hikelength,
         rating: req.body.hikerating,
         user_id: req.session.user_id,
+        imageUrl: req.body.file,
     });
     res.redirect("back");
   });
