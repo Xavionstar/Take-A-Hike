@@ -27,7 +27,7 @@ router.get('/signup', (req, res) => {
 });
 
 //this is the route that takes the user to their own profile page
-router.get("/profile",  async (req, res) => {
+router.get("/profile", withAuth, async (req, res) => {
     let hikeData = await Hike.findAll({
       
         where: { user_id: req.session.user_id },
@@ -42,6 +42,7 @@ router.get("/profile",  async (req, res) => {
       logged_in: req.session.logged_in
     });
   });
+  
 //this route lets you create a new hike
   router.post("/profile", withAuth, async (req, res) => {
     await Hike.create({
