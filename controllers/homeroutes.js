@@ -1,11 +1,9 @@
 const router = require('express').Router();
-const { Comment, Hike, User } = require('../models');
-
-// const Hike = require('../models/Hike');
-
+// const { Comment, Hike, User } = require('../models');
+const Hike = require('../models/Hike');
 const { Op } = require('sequelize');
 
-//const withAuth = require("../../util/auth");
+const withAuth = require("../utils/auth");
 
 router.get("/", async (req, res) => {
 
@@ -28,22 +26,6 @@ router.get('/signup', (req, res) => {
   res.render('signup');
 });
 
-
-//this route will get the specific hike you want to edit and take you to a page with just it on it
-router.get("/profile/:id",  async (req, res) => {
-    
-
-    let post = await Hike.findOne({
-      where: {
-        id: req.params.id,
-      },
-    });
-    post = post.get({ plain: true });
-    res.render("edithike", {
-      post,
-      logged_in: req.session.logged_in
-    });
-  });
 //this is the route that takes the user to their own profile page
 router.get("/profile",  async (req, res) => {
     let hikeData = await Hike.findAll({
@@ -61,7 +43,7 @@ router.get("/profile",  async (req, res) => {
     });
   });
 //this route lets you create a new hike
-  router.post("/profile", async (req, res) => {
+  router.post("/profile", withAuth, async (req, res) => {
     await Hike.create({
         name: req.body.hikename,
         description: req.body.hikedescription,
@@ -71,11 +53,28 @@ router.get("/profile",  async (req, res) => {
         length: req.body.hikelength,
         rating: req.body.hikerating,
         user_id: req.session.user_id,
+        imageUrl: req.body.file,
     });
     res.redirect("back");
   });
+
+  //this route will get the specific hike you want to edit and take you to a page with just that hike
+router.get("/profile/:id", withAuth, async (req, res) => {   
+
+  let hike = await Hike.findOne({
+    where: {
+      id: req.params.id,
+    },
+  });
+  hike = hike.get({ plain: true });
+  res.render("edithike", {
+    hike,
+    logged_in: req.session.logged_in
+  });
+});
+
 //this is the route that edits and updates the hike and then sends u back to profile
-  router.put("/profile/:id", async (req, res) => {
+  router.put("/profile/:id", withAuth, async (req, res) => {
     await Hike.update(
       { name: req.body.hikename,
         location: req.body.hikelocation,
@@ -92,7 +91,7 @@ router.get("/profile",  async (req, res) => {
     res.redirect("/profile");
   });
 //this route deletes hikes
-  router.delete("/profile/:id", async (req, res) => {
+  router.delete("/profile/:id", withAuth, async (req, res) => {
     await Hike.destroy({
       where: {
         id: req.params.id,
@@ -127,21 +126,6 @@ router.get('/viewhikes', async (req, res) => {
   } catch (err) {
     return res.status(500).json(err)
   }
-});
-
-// <====== desmond get hike by id ======>
-router.get("/hike/:id", async (req, res) => {
-  let hikePost = await Hike.findOne({
-    where: {
-      id: req.params.id,
-    },
-    include: [{ model: Comment }]
-  });
-  hikePost = hikePost.get({ plain: true });
-  console.log(hikePost);
-  res.render("hike_details", {
-    hikePost,
-  });
 });
 
 module.exports = router

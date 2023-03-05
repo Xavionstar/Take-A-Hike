@@ -63,9 +63,11 @@ router.post('/signup', async (req, res) => {
      console.log("the new email " + req.body.email);
     req.session.save(() => {
       req.session.logged_in = true;
-
-      res.status(200).json(userData);
+      req.session.user_id = userData.id;
+      
     });
+    res.status(200).json(userData);
+   
   } catch (err) {
     console.log(err);
     res.status(500).json(err);
