@@ -10,6 +10,7 @@ User.hasMany(Comment, {
   foreignKey: 'user_id',
 });
 
+
 Hike.hasMany(Comment, {
   foreignKey: 'hike_id',
   onDelete: 'CASCADE'

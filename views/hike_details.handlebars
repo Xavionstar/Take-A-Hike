@@ -1,5 +1,5 @@
 {{!-- Desmond's handlebars --}}
-
+<link rel="stylesheet" type="text/css" href="../public/css/style.css">
 <div class="row">
   {{!-- "{{hikePost.img}}" something like this to target Hike's picture.--}}
   <img
@@ -13,7 +13,7 @@
         <p class="card-text"><strong>Difficulty 1-5:</strong> {{hikePost.difficulty}}</p>
         <p class="card-text"><strong>Description:</strong> {{hikePost.description}}</p>
         <p class="card-text"><strong>Max Altitude:</strong> {{hikePost.max_altitude}}</p>
-        <p class="card-text"><strong>Distance:</strong>{{hikePost.length}} miles</p>
+        <p class="card-text"><strong>Distance:</strong> {{hikePost.length}} miles</p>
         <p class="card-text"><strong>Rating 1-5:</strong> {{hikePost.rating}}</p>
 
       </div>
@@ -54,7 +54,7 @@
         <option value="5">Five Stars⭐⭐⭐⭐⭐</option>
       </select>
 
-      <button type="submit" class="btn btn-primary mt-4 mb-3">Submit</button>
+      <button type="submit" data-hikeid={{hikePost.id}} class="btn btn-primary mt-4 mb-3" id="ratingButton">Submit</button>
     </form>
 
   </div>
@@ -66,7 +66,7 @@
     <div class="card-body">
       <h5> Add a comment!</h5>
       <form id="commentForm">
-        <textarea class="form-control " name="comment" rows="3" id="commentData"></textarea>
+        <textarea class="form-control " data-hikeid= {{hikePost.id}} name="comment" rows="3" id="commentData"></textarea>
 
         <button type="submit" class="btn btn-primary mt-4 mb-3" id="submitCommentButton">Submit</button>
       </form>
@@ -78,10 +78,11 @@
         <div class="card mt-4">
           <div class="card-body">
             <h5 class="card-title">Comments:</h5>
-            {{#each hikePost.comments}}
-            <div class="card">
+            {{#each hikePost.comments}} 
+            
+            <div class="card" id="commentCard">
               <div class="card-body" >
-                {{this.content}}
+                {{content}} <a href="#" class="btn btn-danger" id="deleteButton">Delete</a>
               </div>
             </div>
           {{/each}}
