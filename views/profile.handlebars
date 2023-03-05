@@ -42,7 +42,7 @@
     <div class="card border-primary border border-5 mt-4 col-sm-12 mb-3 mb-sm-0">
       <div class="card-body">
         <h5>Post a New Hike </h5>
-        <form method="POST" action="/profile">
+        <form method="POST" action="/profile" class="post-form">
         <label for="postHikeNameTextArea"> <strong>Hike name</strong> </label>
           <input type="text"  id="postHikeNameTextArea" class="form-control " name="hikename" rows="3" >
         <label for="postHikeLocationSelectBox"> <strong>Hike Location</strong> </label>
@@ -81,6 +81,9 @@
         
           <textarea id="postHikeDescriptionTextArea" class="form-control " name="hikedescription" rows="3" >{{hike.description}}</textarea>
 
+      <label for="file" class="form-label">Image</label>
+      <input class="form-control" type="file" id="file" name="file"/>
+
           <button type="submit" class="btn btn-primary mt-4 mb-3">Submit</button> 
           
         </form>
@@ -88,3 +91,4 @@
       </div>
   </div>
 </div>
+<script src="/js/post.js"></script>

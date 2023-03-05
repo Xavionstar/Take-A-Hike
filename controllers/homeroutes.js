@@ -1,8 +1,6 @@
 const router = require('express').Router();
 // const { Comment, Hike, User } = require('../models');
-
 const Hike = require('../models/Hike');
-
 const { Op } = require('sequelize');
 
 const withAuth = require("../utils/auth");
@@ -29,22 +27,21 @@ router.get('/signup', (req, res) => {
 });
 
 //this is the route that takes the user to their own profile page
-router.get("/profile", withAuth, async (req, res) => {
-  let hikeData = await Hike.findAll({
-    
-      where: { user_id: req.session.user_id },
-    
+router.get("/profile",  async (req, res) => {
+    let hikeData = await Hike.findAll({
+      
+        where: { user_id: req.session.user_id },
+      
+    });
+    hikeData = hikeData.map((singleHikeData) =>
+      singleHikeData.get({ plain: true })
+    );
+    res.render("profile", {
+      hikes : hikeData,
+      css: 'profile.css',
+      logged_in: req.session.logged_in
+    });
   });
-  hikeData = hikeData.map((singleHikeData) =>
-    singleHikeData.get({ plain: true })
-  );
-  res.render("profile", {
-    hikes : hikeData,
-    css: 'profile.css',
-    logged_in: req.session.logged_in
-  });
-});
-
 //this route lets you create a new hike
   router.post("/profile", withAuth, async (req, res) => {
     await Hike.create({
@@ -56,6 +53,7 @@ router.get("/profile", withAuth, async (req, res) => {
         length: req.body.hikelength,
         rating: req.body.hikerating,
         user_id: req.session.user_id,
+        imageUrl: req.body.file,
     });
     res.redirect("back");
   });
@@ -101,8 +99,9 @@ router.get("/profile/:id", withAuth, async (req, res) => {
     });
     res.redirect("/profile");
   });
+
   // <====== harrys filter code ======>
-router.get('/filter', async (req, res) => {
+router.get('/viewhikes', async (req, res) => {
   try {
     //<------ grabs each query parameter and assigns it to a value ------>
     const hike = req.query.location;
