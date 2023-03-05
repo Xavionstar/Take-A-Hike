@@ -24,7 +24,7 @@ const sess = {
     db: sequelize
   })
 };
-
+app.use(express.json());
 app.use(session(sess));
 
 app.set("view engine", "handlebars");
@@ -32,7 +32,7 @@ app.set("views", "./views");
 app.engine("handlebars", hbs.engine);
 app.use(methodOverride('_method'))
 
-app.use(express.json());
+
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
 
