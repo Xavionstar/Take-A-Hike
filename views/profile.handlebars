@@ -1,21 +1,22 @@
 <div class="row">
 {{#each hikes as |hike|}}
 <div class="col-sm-6 mb-3 mb-sm-0">
-    <div class="card mt-4">
+    <div class="card border-primary border border-5 mt-4">
       <div class="card-body">
         <h5 class="card-title"> <strong>Hike Name: </strong>{{hike.name}}</h5>
         <p class="card-text"> <strong>Location: </strong>{{hike.location}}</p>
+   
         <p class="card-text"> <strong>Difficulty 1-5: </strong>{{hike.difficulty}}</p>
         <p class="card-text"> <strong>Max Altitude: </strong>{{hike.max_altitude}}</p>
         <p class="card-text"> <Strong>Length in hours: </Strong>{{hike.length}}</p>
         <p class="card-text"> <strong>Hike Description: </strong>{{hike.description}}</p>
                 {{#if hike.rating}}
-    Your Rating:
+    <strong>Your Rating:</strong> 
     {{hike.rating}} ⭐'s
  
   {{else}}
-        <select class="form-select" name="hikerating" aria-label="Default select example" id = "selectBox">
-  <option selected>Choose a rating 1-5 stars⭐</option>
+        <select class="form-select" name="hikerating" aria-label="Default select example" id = "selectRatingBox">
+  <option selected> <strong>Choose a rating 1-5 stars⭐</strong> </option>
   <option value="1">One Stars⭐</option>
   <option value="2">Two Stars⭐⭐</option>
   <option value="3">Three Stars⭐⭐⭐</option>
@@ -38,16 +39,30 @@
 
 
 
-    <div class="card mt-4 col-sm-12 mb-3 mb-sm-0">
+    <div class="card border-primary border border-5 mt-4 col-sm-12 mb-3 mb-sm-0">
       <div class="card-body">
         <h5>Post a New Hike </h5>
         <form method="POST" action="/profile">
         <label for="postHikeNameTextArea"> <strong>Hike name</strong> </label>
           <input type="text"  id="postHikeNameTextArea" class="form-control " name="hikename" rows="3" >
-        <label for="postHikeLocationTextArea"> <strong>Hike Location</strong> </label>
-          <input type="text"  id="postHikeLocationTextArea" class="form-control " name="hikelocation" rows="3" >
-        <label for="postHikeDifficultyTextArea"> <strong>Hike Difficulty</strong> </label>
-          <input type="text"  id="postHikeDifficultyTextArea" class="form-control " name="hikedifficulty" rows="3" >
+        <label for="postHikeLocationSelectBox"> <strong>Hike Location</strong> </label>
+          <select class="form-select" name="hikelocation" aria-label="Default select example" id="postHikeLocationSelectBox">
+  <option selected> Where is the hike located? </option>
+  <option value="Western Washington">Western Washington</option>
+  <option value="Eastern Washington">Eastern Washington</option>
+  <option value="Northern Washington">Northern Washington</option>
+  <option value="Southern Washington">Southern Washington</option>
+  <option value="Central Washington">Central Washington</option>
+</select>
+        <label for="postHikeDifficultySelectBox"> <strong>Hike Difficulty</strong> </label>
+          <select class="form-select" name="hikedifficulty" aria-label="Default select example" id="postHikeDifficultySelectBox">
+  <option selected> How difficult is this hike? </option>
+  <option value="1">1</option>
+  <option value="2">2</option>
+  <option value="3">3</option>
+  <option value="4">4</option>
+  <option value="5">5</option>
+</select>
         <label for="postHikeAltitudeTextArea"> <strong>Hike Altitude</strong> </label>
           <input type="text"  id="postHikeAltitudeTextArea" class="form-control " name="hikealtitude" rows="3" >
         <label for="postHikeLengthTextArea"> <strong>Hike Length</strong> </label>

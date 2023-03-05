@@ -21,7 +21,7 @@ Hike.init(
     },
 
     difficulty: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.STRING,
       allowNull: false,
     },
     description: {
@@ -38,7 +38,7 @@ Hike.init(
     },
     rating: {
       type: DataTypes.STRING,
-      
+      allowNull: false,
     },
 
     // image: {
