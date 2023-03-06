@@ -6,7 +6,7 @@ const routes = require('./controllers/index');
 const helpers = require('./utils/helpers');
 const session = require('express-session');
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
-const methodOverride = require("method-override")
+// const methodOverride = require("method-override")
 
 const sequelize = require("./config/connection");
 
@@ -30,7 +30,7 @@ app.use(session(sess));
 app.set("view engine", "handlebars");
 app.set("views", "./views");
 app.engine("handlebars", hbs.engine);
-app.use(methodOverride('_method'))
+// app.use(methodOverride('_method'))
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));

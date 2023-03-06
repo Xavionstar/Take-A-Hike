@@ -22,10 +22,11 @@ router.get('/', async (req, res) => {
     }
 
 });
+ router.post('/:id',  async (req, res) => {
 
 // router.post('/', withAuth, async (req, res) => {
 
-  router.post('/:id',  async (req, res) => {
+ 
 
     try {
       const commentData = await Comment.create({

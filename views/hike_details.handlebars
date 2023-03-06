@@ -9,7 +9,7 @@
     <div class="card mt-4">
       <div class="card-body">
        <img src="{{hikePost.imageUrl}}" class="card-img-top" alt="{{hikePost.name}}" />
-        <h5 class="card-title">{{hikePost.name}}</h5>
+        {{!-- <h5 class="card-title">{{hikePost.name}}</h5> --}}
         <p class="card-text"><strong>Location:</strong> {{hikePost.location}}</p>
         <p class="card-text"><strong>Difficulty 1-5:</strong> {{hikePost.difficulty}}</p>
         <p class="card-text"><strong>Description:</strong> {{hikePost.description}}</p>
@@ -26,15 +26,15 @@
   <div class="card">
     <div class="card-body">
       <strong>Your Rating:</strong>
-      {{hikePost.rating}} ⭐<strong>'s</strong>
+      {{hikePost.rating}} ⭐<strong>'s</strong> <button type="submit" data-hikeid={{hikePost.id}} class="btn btn-primary mt-4 mb-3" id="ratingButton">Change Rating</button>
     </div>
   </div>
-  <div class="card">
+  {{!-- <div class="card">
     <div class="card-body">
       User Ratings:
       {{hikePost.rating}} ⭐'s
     </div>
-  </div>
+  </div> --}}
 
   {{else}}
 
@@ -45,7 +45,7 @@
 <div class="card mt-4 col-sm-12 mb-3 mb-sm-0">
   <div class="card-body">
     <h5> Add a hike rating!</h5>
-    <form method="post" action="/hike_details/">
+    {{!-- <form method="put" > --}}
       <select class="form-select" aria-label="Default select example" id="selectBox">
         <option selected>Choose a rating 1-5 stars⭐</option>
         <option value="1">One Stars⭐</option>
@@ -56,7 +56,7 @@
       </select>
 
       <button type="submit" data-hikeid={{hikePost.id}} class="btn btn-primary mt-4 mb-3" id="ratingButton">Submit</button>
-    </form>
+    {{!-- </form> --}}
 
   </div>
  
@@ -82,9 +82,10 @@
             {{#each hikePost.comments}} 
             
             <div class="card" id="commentCard">
-              <div class="card-body" >
-                {{content}} <a href="#" class="btn btn-danger" id="deleteButton">Delete</a>
+              <div class="card-body"  >
+                {{content}} <button type="submit" class="btn btn-danger" id="deleteButton" data-commentid={{id}} onclick="deleteComment(event)" data-hikeid={{hikePost.id}} >Delete</button>
               </div>
+                
             </div>
           {{/each}}
           </div>

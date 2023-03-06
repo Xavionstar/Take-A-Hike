@@ -4,6 +4,7 @@ const { Comment, Hike } = require('../../models');
 
 
 //<====== desmond =======>
+// get all hikes
 router.get("/", async (req, res) => {
   try {
     const hikeData = await Hike.findAll({
@@ -21,6 +22,7 @@ router.get("/", async (req, res) => {
 
 
 // <====== desmond get hike by id ======>
+// get hike by id
 router.get("/:id", async (req, res) => {
   let hikePost = await Hike.findOne({
     where: {
@@ -38,7 +40,7 @@ router.get("/:id", async (req, res) => {
 router.put('/:hike_id', async (req, res) => {
   console.log(req.params)
   console.log(req.body)
-  // update a category by its `id` value
+  // update a hike by its `id` value
   await Hike.update(
     {
       // All the fields you can update and the data attached to the request body.
@@ -46,7 +48,7 @@ router.put('/:hike_id', async (req, res) => {
       
     },
     {
-      // Gets a book based on the book_id given in the request parameters
+      // Gets a hike based on the hike_id given in the request parameters
       where: {
         id: req.params.hike_id,
       },
