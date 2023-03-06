@@ -38,7 +38,7 @@ Hike.init(
     },
     rating: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: true,
     },
 
     imageUrl: {
