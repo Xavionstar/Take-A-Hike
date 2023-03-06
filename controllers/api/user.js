@@ -59,6 +59,7 @@ router.post('/signup', async (req, res) => {
     const userData = await User.create({
       email: req.body.email,
       password: req.body.password,
+
     });
      console.log("the new email " + req.body.email);
     req.session.save(() => {
