@@ -121,4 +121,47 @@ router.get('/viewhikes', async (req, res) => {
   }
 });
 
+router.get("/hike/:id", async (req, res) => {
+  let hikePost = await Hike.findOne({
+    where: {
+      id: req.params.id,
+    },
+    include: [{ model: Comment }]
+  });
+  hikePost = hikePost.get({ plain: true });
+  console.log(hikePost);
+  res.render("hike_details", {
+    hikePost,
+  });
+});
+
+
+// rating put route that we are no longer using.
+// router.put('/hike/:hike_id', async (req, res) => {
+//   console.log(req.params)
+//   console.log(req.body)
+//   // update a hike by its `id` value
+//   await Hike.update(
+//     {
+//       // All the fields you can update and the data attached to the request body.
+//       rating: req.body.rating,
+      
+//     },
+//     {
+//       // Gets a hike based on the hike_id given in the request parameters
+//       where: {
+//         id: req.params.hike_id,
+//       },
+//     }
+//   )
+//     .then((updatedHike) => {
+//       res.json(updatedHike);
+//     })
+//     .catch((err) => {
+//       console.log(err);
+//       res.json(err);
+//     });
+
+// });
+
 module.exports = router

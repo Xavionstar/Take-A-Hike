@@ -21,6 +21,28 @@ router.get('/', async (req, res) => {
         
     }
 
+    router.get('/:id', async (req, res) => {
+      // find one category by its `id` value
+      
+    
+      try {
+        const commentData = await Comment.findByPk(req.params.id, {
+          //be sure to include its associated Products
+          include: [{ model: Comment  }]
+        });
+    
+        if (!commentData) {
+          
+          res.status(404).json({ message: 'No comment found with this id!' });
+          return;
+        }
+    
+        res.status(200).json(commentData);
+      } catch (err) {
+        res.status(500).json(err);
+      }
+    });
+
 });
  router.post('/:id',  async (req, res) => {
 
@@ -49,7 +71,7 @@ router.get('/', async (req, res) => {
     try {
       const commentData = await Comment.destroy({
         where: {
-          id: req.params.id
+         id: req.params.id
         }
       });
   
