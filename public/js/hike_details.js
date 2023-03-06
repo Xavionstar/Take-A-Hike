@@ -23,7 +23,7 @@ async function newFormHandler(event) {
     });
     //if the dish is added, the 'all' template will be rerendered
     if (response.ok) {
-      document.location.replace(`/api/hike/${hike_id}`);
+      document.location.replace(`/hike/${hike_id}`);
     } else {
       alert('Failed to add comment');
     }
@@ -84,14 +84,12 @@ async function newRatingHandler(event) {
     console.log(response);
     //if the dish is added, the 'all' template will be rerendered
     if (response.ok) {
-      document.location.replace(`/api/hike/${hike_id}`);
+      document.location.replace(`/hike/${hike_id}`);
     } else {
       alert('Failed to delete comment');
     }
   }
   console.log(document.querySelector('#deleteButton'))
   document.querySelector('#deleteButton').addEventListener('submit', deleteComment);
-    
-    
     
     
