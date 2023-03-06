@@ -114,7 +114,9 @@ router.get('/viewhikes', async (req, res) => {
     const posts = filteredHikes.map((hike) => hike.get({ plain: true }))
     //<------ viewhikes view rendered with a 200 code ------>
     res.status(200).render('viewhikes', {
-      posts: posts
+      posts: posts,
+      logged_in: req.session.logged_in
+
     })
   } catch (err) {
     return res.status(500).json(err)
