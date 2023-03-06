@@ -1,94 +1,96 @@
 <div class="row">
-{{#each hikes as |hike|}}
-<div class="col-sm-6 mb-3 mb-sm-0">
+  {{#each hikes as |hike|}}
+  <div class="col-sm-6 mb-3 mb-sm-0">
     <div class="card border-primary border border-5 mt-4">
       <div class="card-body">
         <h5 class="card-title"> <strong>Hike Name: </strong>{{hike.name}}</h5>
         <p class="card-text"> <strong>Location: </strong>{{hike.location}}</p>
-   
+
         <p class="card-text"> <strong>Difficulty 1-5: </strong>{{hike.difficulty}}</p>
         <p class="card-text"> <strong>Max Altitude: </strong>{{hike.max_altitude}}</p>
         <p class="card-text"> <Strong>Length in hours: </Strong>{{hike.length}}</p>
         <p class="card-text"> <strong>Hike Description: </strong>{{hike.description}}</p>
-                {{#if hike.rating}}
-    <strong>Your Rating:</strong> 
-    {{hike.rating}} ⭐'s
- 
-  {{else}}
-        <select class="form-select" name="hikerating" aria-label="Default select example" id = "selectRatingBox">
-  <option selected> <strong>Choose a rating 1-5 stars⭐</strong> </option>
-  <option value="1">One Stars⭐</option>
-  <option value="2">Two Stars⭐⭐</option>
-  <option value="3">Three Stars⭐⭐⭐</option>
-  <option value="4">Four Stars⭐⭐⭐⭐</option>
-  <option value="5">Five Stars⭐⭐⭐⭐⭐</option>
-</select>
-{{/if}}
-<div class="overlay-right d-flex justify-content-center">
-        <a href="/profile/{{hike.id}}" class="btn btn-primary">Edit Post</a>
-        <form class="deleteButton" method="POST" action="/profile/{{hike.id}}?_method=DELETE">
-        <button type="submit" class="btn btn-danger">Delete Post</button>
-        </form>
+        {{#if hike.rating}}
+        <strong>Your Rating:</strong>
+        {{hike.rating}} ⭐'s
+
+        {{else}}
+        <select class="form-select" name="hikerating" aria-label="Default select example" id="selectRatingBox">
+          <option selected> <strong>Choose a rating 1-5 stars⭐</strong> </option>
+          <option value="1">One Stars⭐</option>
+          <option value="2">Two Stars⭐⭐</option>
+          <option value="3">Three Stars⭐⭐⭐</option>
+          <option value="4">Four Stars⭐⭐⭐⭐</option>
+          <option value="5">Five Stars⭐⭐⭐⭐⭐</option>
+        </select>
+        {{/if}}
+        <div class="overlay-right d-flex justify-content-center">
+          <a href="/profile/{{hike.id}}" class="btn btn-primary">Edit Post</a>
+          <form class="deleteButton" method="POST" action="/profile/{{hike.id}}?_method=DELETE">
+            <button type="submit" class="btn btn-danger">Delete Post</button>
+          </form>
         </div>
       </div>
     </div>
   </div>
-{{/each}}
+  {{/each}}
 
 
 
 
 
-    <div class="card border-primary border border-5 mt-4 col-sm-12 mb-3 mb-sm-0">
-      <div class="card-body">
-        <h5>Post a New Hike </h5>
-        <form method="POST" action="/profile" class="post-form">
+  <div class="card border-primary border border-5 mt-4 col-sm-12 mb-3 mb-sm-0">
+    <div class="card-body">
+      <h5>Post a New Hike </h5>
+      <form method="POST" action="/api/hike" class="post-form" enctype="multipart/form-data">
         <label for="postHikeNameTextArea"> <strong>Hike name</strong> </label>
-          <input type="text"  id="postHikeNameTextArea" class="form-control " name="hikename" rows="3" >
+        <input type="text" id="postHikeNameTextArea" class="form-control " name="hikename" rows="3">
         <label for="postHikeLocationSelectBox"> <strong>Hike Location</strong> </label>
-          <select class="form-select" name="hikelocation" aria-label="Default select example" id="postHikeLocationSelectBox">
-  <option selected> Where is the hike located? </option>
-  <option value="Western Washington">Western Washington</option>
-  <option value="Eastern Washington">Eastern Washington</option>
-  <option value="Northern Washington">Northern Washington</option>
-  <option value="Southern Washington">Southern Washington</option>
-  <option value="Central Washington">Central Washington</option>
-</select>
+        <select class="form-select" name="hikelocation" aria-label="Default select example"
+          id="postHikeLocationSelectBox">
+          <option selected> Where is the hike located? </option>
+          <option value="Western Washington">Western Washington</option>
+          <option value="Eastern Washington">Eastern Washington</option>
+          <option value="Northern Washington">Northern Washington</option>
+          <option value="Southern Washington">Southern Washington</option>
+        </select>
         <label for="postHikeDifficultySelectBox"> <strong>Hike Difficulty</strong> </label>
-          <select class="form-select" name="hikedifficulty" aria-label="Default select example" id="postHikeDifficultySelectBox">
-  <option selected> How difficult is this hike? </option>
-  <option value="1">1</option>
-  <option value="2">2</option>
-  <option value="3">3</option>
-  <option value="4">4</option>
-  <option value="5">5</option>
-</select>
+        <select class="form-select" name="hikedifficulty" aria-label="Default select example"
+          id="postHikeDifficultySelectBox">
+          <option selected> How difficult is this hike? </option>
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+        </select>
         <label for="postHikeAltitudeTextArea"> <strong>Hike Altitude</strong> </label>
-          <input type="text"  id="postHikeAltitudeTextArea" class="form-control " name="hikealtitude" rows="3" >
+        <input type="text" id="postHikeAltitudeTextArea" class="form-control " name="hikealtitude" rows="3">
         <label for="postHikeLengthTextArea"> <strong>Hike Length</strong> </label>
-          <input type="text"  id="postHikeLengthTextArea" class="form-control " name="hikelength" rows="3" >
+        <input type="text" id="postHikeLengthTextArea" class="form-control " name="hikelength" rows="3">
         <label for="postHikeRatingTextArea"> <strong>Hike Rating</strong> </label>
-          <select class="form-select" name="hikerating" aria-label="Default select example" id = "selectBox">
-  <option selected>Choose a rating 1-5 stars⭐</option>
-  <option value="1">One Stars⭐</option>
-  <option value="2">Two Stars⭐⭐</option>
-  <option value="3">Three Stars⭐⭐⭐</option>
-  <option value="4">Four Stars⭐⭐⭐⭐</option>
-  <option value="5">Five Stars⭐⭐⭐⭐⭐</option>
-</select> 
-        
-        <label for="postHikeDescriptionTextArea"> <strong>Hike Description</strong> </label>        
-        
-          <textarea id="postHikeDescriptionTextArea" class="form-control " name="hikedescription" rows="3" >{{hike.description}}</textarea>
+        <select class="form-select" name="hikerating" aria-label="Default select example" id="selectBox">
+          <option selected>Choose a rating 1-5 stars⭐</option>
+          <option value="1">One Stars⭐</option>
+          <option value="2">Two Stars⭐⭐</option>
+          <option value="3">Three Stars⭐⭐⭐</option>
+          <option value="4">Four Stars⭐⭐⭐⭐</option>
+          <option value="5">Five Stars⭐⭐⭐⭐⭐</option>
+        </select>
 
-      <label for="file" class="form-label">Image</label>
-      <input class="form-control" type="file" id="file" name="file"/>
+        <label for="postHikeDescriptionTextArea"> <strong>Hike Description</strong> </label>
 
-          <button type="submit" class="btn btn-primary mt-4 mb-3">Submit</button> 
-          
-        </form>
-        
-      </div>
+        <textarea id="postHikeDescriptionTextArea" class="form-control " name="hikedescription"
+          rows="3"></textarea>
+
+        <label for="file" class="form-label">Image</label>
+        <input class="form-control" type="file" id="file" name="file" />
+
+        <button type="submit" class="btn btn-primary mt-4 mb-3">Submit</button>
+
+      </form>
+
+    </div>
   </div>
 </div>
 <script src="/js/post.js"></script>
