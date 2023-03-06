@@ -1,13 +1,13 @@
   <div class="col-sm-6 mb-3 mb-sm-0">
-    <div class="card mt-4">
+    <div class="card mt-4 border-primary border border-5 mt-4">
       <div class="card-body">
-        <img src="{{imageUrl}}" class="card-img-top" alt="{{name}}" />
-        <h5 class="card-title">Name- {{name}}</h5>
-        <p class="card-text">{{location}}</p>
-        <p class="card-text">{{difficulty}}</p>
-        <p class="card-text">{{description}}</p>
-        <p class="card-text">{{max_altitude}}</p>
-        <p class="card-text">{{length}}</p>
+        <a href="/hike/{{id}}"><img src="{{imageUrl}}" class="card-img-top" alt="{{name}}" id="hikePhoto"/></a>
+        <h5 class="card-title">Hike Name: {{name}}</h5>
+        <p class="card-text">Hike Location: {{location}}</p>
+        <p class="card-text">Hike Difficulty: {{difficulty}}</p>
+        <p class="card-text">Maximum Altitude: {{max_altitude}} feet</p>
+        <p class="card-text">Hike Length: {{length}} miles</p>
+        <p class="card-text">Description: {{description}}</p>
       </div>
     </div>
   </div>
