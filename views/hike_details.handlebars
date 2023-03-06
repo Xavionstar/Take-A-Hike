@@ -6,8 +6,8 @@
     src="https://www.wallpaperbetter.com/wallpaper/159/604/884/usa-washington-mount-baker-volcano-lake-reflection-morning-sunrise-forest-1080P-wallpaper.jpg"
     alt="Nature">
   <div class="col-sm-12 mb-3 mb-sm-0">
-    <div class="card mt-4">
-      <div class="card-body">
+    <div class="card mt-4 border-primary border border-5">
+      <div class="card-body border-primary border border-1">
        <img src="{{hikePost.imageUrl}}" class="card-img-top" alt="{{hikePost.name}}" />
         {{!-- <h5 class="card-title">{{hikePost.name}}</h5> --}}
         <p class="card-text"><strong>Location:</strong> {{hikePost.location}}</p>
@@ -24,7 +24,7 @@
 
   {{#if hikePost.rating}}
   <div class="card">
-    <div class="card-body">
+    <div class="card-body  ">
       <strong>Your Rating:</strong>
       {{hikePost.rating}} ⭐<strong>'s</strong> <button type="submit" data-hikeid={{hikePost.id}} class="btn btn-primary mt-4 mb-3" id="ratingButton">Change Rating</button>
     </div>
@@ -42,8 +42,8 @@
 </div>
 
 {{!-- add a rating form --}}
-<div class="card mt-4 col-sm-12 mb-3 mb-sm-0">
-  <div class="card-body">
+<div class="card mt-4 col-sm-12 mb-3 mb-sm-0 ">
+  <div class="card-body ">
     <h5> Add a hike rating!</h5>
     {{!-- <form method="put" > --}}
       <select class="form-select" aria-label="Default select example" id="selectBox">
@@ -63,8 +63,8 @@
   {{/if}}
 
 {{!-- add a comment form --}}
-  <div class="card mt-4 col-sm-12 mb-3 mb-sm-0">
-    <div class="card-body">
+  <div class="card mt-4 col-sm-12 mb-3 mb-sm-0 ">
+    <div class="card-body  ">
       <h5> Add a comment!</h5>
       <form id="commentForm">
         <textarea class="form-control " data-hikeid= {{hikePost.id}} name="comment" rows="3" id="commentData"></textarea>
@@ -75,8 +75,8 @@
     </div>
 {{!-- comment post card --}}
     <div>
-      <div class="col-sm-12 mb-3 mb-sm-0">
-        <div class="card mt-4">
+      <div class="col-sm-12 mb-3 mb-sm-0 ">
+        <div class="card mt-4 ">
           <div class="card-body">
             <h5 class="card-title">Comments:</h5>
             {{#each hikePost.comments}} 
