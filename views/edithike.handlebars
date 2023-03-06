@@ -1,55 +1,57 @@
-<div class="row">
-  <div class="card border-primary border border-5 mt-4 col-sm-12 mb-3 mb-sm-0">
-    <div class="card-body">
-      <h5>Edit Hike </h5>
-      <form method="POST" action="/profile/{{hike.id}}?_method=PUT">
-        <label for="editHikeNameTextArea"> <strong>Hike name</strong> </label>
-        <input type="text" value="{{hike.name}}" id="editHikeNameTextArea" class="form-control" name="hikename"
-          rows="3">
-        <label for="editHikeLocationSelectBox"> <strong>Hike Location</strong> </label>
-        <select class="form-select" name="hikelocation" aria-label="Default select example"
-          id="editHikeLocationSelectBox">
-          <option selected> Where is the hike located? </option>
-          <option value="Western Washington">Western Washington</option>
-          <option value="Eastern Washington">Eastern Washington</option>
-          <option value="Northern Washington">Northern Washington</option>
-          <option value="Southern Washington">Southern Washington</option>
-          <option value="Central Washington">Central Washington</option>
-        </select>
-        <label for="editHikeDifficultySelectBox"> <strong>Hike Difficulty</strong> </label>
-        <select class="form-select" name="hikedifficulty" aria-label="Default select example"
-          id="editHikeDifficultySelectBox">
-          <option selected> How difficult is this hike? </option>
-          <option value="1">1</option>
-          <option value="2">2</option>
-          <option value="3">3</option>
-          <option value="4">4</option>
-          <option value="5">5</option>
-        </select>
-        <label for="editHikeAltitudeTextArea"> <strong>Hike Altitude</strong> </label>
-        <input type="text" value="{{hike.max_altitude}}" id="editHikeAltitudeTextArea" class="form-control "
-          name="hikealtitude" rows="3">
-        <label for="editHikeLengthTextArea"> <strong>Hike Length</strong> </label>
-        <input type="text" value="{{hike.length}}" id="editHikeLengthTextArea" class="form-control " name="hikelength"
-          rows="3">
-        <label for="editHikeRatingSelectBox"> <strong>Hike Rating</strong> </label>
-        <select class="form-select" name="hikerating" aria-label="Default select example" id="editHikeRatingSelectBox">
-          <option selected>Choose a rating 1-5 stars⭐</option>
-          <option value="1">One Stars⭐</option>
-          <option value="2">Two Stars⭐⭐</option>
-          <option value="3">Three Stars⭐⭐⭐</option>
-          <option value="4">Four Stars⭐⭐⭐⭐</option>
-          <option value="5">Five Stars⭐⭐⭐⭐⭐</option>
-        </select>
-        <label for="editHikePostContentTextArea"> <strong>Hike Description</strong> </label>
+<div class="container m-3">
+  <div class="row">
+    <div class="card border-primary border border-5 mt-4 col-sm-12 mb-3 mb-sm-0">
+      <div class="card-body">
+        <h5>Edit Hike </h5>
+        <form method="POST" action="/profile/{{hike.id}}?_method=PUT">
+          <label for="editHikeNameTextArea"> <strong>Hike name</strong> </label>
+          <input type="text" value="{{hike.name}}" id="editHikeNameTextArea" class="form-control" name="hikename"
+            rows="3">
+          <label for="editHikeLocationSelectBox"> <strong>Hike Location</strong> </label>
+          <select class="form-select" name="hikelocation" aria-label="Default select example"
+            id="editHikeLocationSelectBox">
+            <option selected> Where is the hike located? </option>
+            <option value="Western Washington">Western Washington</option>
+            <option value="Eastern Washington">Eastern Washington</option>
+            <option value="Northern Washington">Northern Washington</option>
+            <option value="Southern Washington">Southern Washington</option>
+            <option value="Central Washington">Central Washington</option>
+          </select>
+          <label for="editHikeDifficultySelectBox"> <strong>Hike Difficulty</strong> </label>
+          <select class="form-select" name="hikedifficulty" aria-label="Default select example"
+            id="editHikeDifficultySelectBox">
+            <option selected> How difficult is this hike? </option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+          </select>
+          <label for="editHikeAltitudeTextArea"> <strong>Hike Altitude</strong> </label>
+          <input type="text" value="{{hike.max_altitude}}" id="editHikeAltitudeTextArea" class="form-control "
+            name="hikealtitude" rows="3">
+          <label for="editHikeLengthTextArea"> <strong>Hike Length</strong> </label>
+          <input type="text" value="{{hike.length}}" id="editHikeLengthTextArea" class="form-control " name="hikelength"
+            rows="3">
+          <label for="editHikeRatingSelectBox"> <strong>Hike Rating</strong> </label>
+          <select class="form-select" name="hikerating" aria-label="Default select example"
+            id="editHikeRatingSelectBox">
+            <option selected>Choose a rating 1-5 stars⭐</option>
+            <option value="1">One Stars⭐</option>
+            <option value="2">Two Stars⭐⭐</option>
+            <option value="3">Three Stars⭐⭐⭐</option>
+            <option value="4">Four Stars⭐⭐⭐⭐</option>
+            <option value="5">Five Stars⭐⭐⭐⭐⭐</option>
+          </select>
+          <label for="editHikePostContentTextArea"> <strong>Hike Description</strong> </label>
 
-        <textarea id="editHikePostContentTextArea" class="form-control " name="hikedescription"
-          rows="3">{{hike.description}}</textarea>
+          <textarea id="editHikePostContentTextArea" class="form-control " name="hikedescription"
+            rows="3">{{hike.description}}</textarea>
 
-        <button type="submit" class="btn btn-primary mt-4 mb-3">Save Edit</button>
+          <button type="submit" class="btn btn-primary mt-4 mb-3">Save Edit</button>
+        </form>
 
-      </form>
-
+      </div>
     </div>
   </div>
 </div>
