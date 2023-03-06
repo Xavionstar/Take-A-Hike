@@ -43,8 +43,9 @@ Hike.init(
 
     imageUrl: {
       type: DataTypes.STRING,
-      allowNull: true,
+      allowNull: false,
     },
+    
     user_id: {
       type: DataTypes.INTEGER,
       allowNull: true,
