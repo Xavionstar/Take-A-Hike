@@ -115,7 +115,8 @@ router.get('/viewhikes', async (req, res) => {
     //<------ viewhikes view rendered with a 200 code ------>
     res.status(200).render('viewhikes', {
       posts: posts
-    })
+    }) 
+    
   } catch (err) {
     return res.status(500).json(err)
   }
