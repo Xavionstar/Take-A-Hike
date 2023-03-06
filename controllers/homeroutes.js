@@ -42,6 +42,9 @@ router.get("/profile", withAuth, async (req, res) => {
     });
   });
   
+
+
+  //this route will get the specific hike you want to edit and take you to a page with just that hike
 router.get("/profile/:id", withAuth, async (req, res) => {   
 
   let hike = await Hike.findOne({
