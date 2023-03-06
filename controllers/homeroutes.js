@@ -42,23 +42,6 @@ router.get("/profile", withAuth, async (req, res) => {
     });
   });
   
-//this route lets you create a new hike
-  // router.post("/profile", withAuth, async (req, res) => {
-    // await Hike.create({
-    //     name: req.body.hikename,
-    //     description: req.body.hikedescription,
-    //     location: req.body.hikelocation,
-    //     difficulty: req.body.hikedifficulty,
-    //     max_altitude: req.body.hikealtitude,
-    //     length: req.body.hikelength,
-    //     rating: req.body.hikerating,
-    //     user_id: req.session.user_id,
-    //     imageUrl: req.body.file,
-    // });
-  //   res.redirect("back");
-  // });
-
-  //this route will get the specific hike you want to edit and take you to a page with just that hike
 router.get("/profile/:id", withAuth, async (req, res) => {   
 
   let hike = await Hike.findOne({
