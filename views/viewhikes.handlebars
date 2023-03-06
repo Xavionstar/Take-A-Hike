@@ -1,50 +1,53 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <div class="navbar-brand">Filter Results</div>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item dropdown">
-        <select class="form-select" aria-label="Default select example" id="diff">
-          <option value="" selected>by difficulty</option>
-          <option value=1>1</option>
-          <option value=2>2</option>
-          <option value=3>3</option>
-          <option value=4>4</option>
-          <option value=5>5</option>
-        </select>
-      </li>
-      <li class="nav-item dropdown">
-        <select class="form-select" aria-label="Default select example" id="loc">
-          <option value="" selected>by location</option>
-          <option value="northern washington">Northern Washington</option>
-          <option value="eastern washington">Eastern Washington</option>
-          <option value="southern washington">Southern Washington</option>
-          <option value="western washington">Western Washington</option>
-        </select>
-      </li>
-      <li class="nav-item dropdown">
-        <select class="form-select" aria-label="Default select example" id="len">
-          <option value="" selected>by distance</option>
-          <option value=0>0-3 Miles</option>
-          <option value=3>3-10 Miles</option>
-          <option value=10>10+ Miles</option>
-        </select>
-      </li>
-      <button type="button" class="btn btn-dark" id="filter">Filter</button>
+  <div id="navbarSupportedContent">
+    <ul class="navbar-nav me-auto mb-2 mb-lg-0 d-flex flex-row">
+      <div>
+        <div class="navbar-brand">Filter Results</div>
+      </div>
+      <div class="d-flex flex-row">
+        <li class="nav-item dropdown">
+          <select class="form-select" aria-label="Default select example" id="diff">
+            <option value="" selected>by difficulty</option>
+            <option value=1>1</option>
+            <option value=2>2</option>
+            <option value=3>3</option>
+            <option value=4>4</option>
+            <option value=5>5</option>
+          </select>
+        </li>
+        <li class="nav-item dropdown">
+          <select class="form-select" aria-label="Default select example" id="loc">
+            <option value="" selected>by location</option>
+            <option value="northern washington">Northern Washington</option>
+            <option value="eastern washington">Eastern Washington</option>
+            <option value="southern washington">Southern Washington</option>
+            <option value="western washington">Western Washington</option>
+          </select>
+        </li>
+        <li class="nav-item dropdown">
+          <select class="form-select" aria-label="Default select example" id="len">
+            <option value="" selected>by distance</option>
+            <option value=0>0-3 Miles</option>
+            <option value=3>3-10 Miles</option>
+            <option value=10>10+ Miles</option>
+          </select>
+        </li>
+        <li>
+          <button type="button" class="btn btn-dark" id="filter">Filter</button>
+        </li>
+      </div>
     </ul>
   </div>
 </nav>
+<div class="container m-3">
+  <div class="row">
 
-<div class="row">
-
-  {{#each posts as |post|}}
-  {{>hike-card}}
-  {{/each}}
+    {{#each posts as |post|}}
+    {{>hike-card}}
+    {{/each}}
+  </div>
 </div>
+
 
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
   integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
