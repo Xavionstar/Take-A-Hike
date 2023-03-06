@@ -1,6 +1,5 @@
 const router = require('express').Router();
-// const { Comment, Hike, User } = require('../models');
-const Hike = require('../models/Hike');
+const { Comment, Hike, User } = require('../models');
 const { Op } = require('sequelize');
 
 const withAuth = require("../utils/auth");
@@ -27,7 +26,7 @@ router.get('/signup', (req, res) => {
 });
 
 //this is the route that takes the user to their own profile page
-router.get("/profile",  async (req, res) => {
+router.get("/profile", withAuth, async (req, res) => {
     let hikeData = await Hike.findAll({
       
         where: { user_id: req.session.user_id },
@@ -42,21 +41,8 @@ router.get("/profile",  async (req, res) => {
       logged_in: req.session.logged_in
     });
   });
-//this route lets you create a new hike
-  router.post("/profile", withAuth, async (req, res) => {
-    await Hike.create({
-        name: req.body.hikename,
-        description: req.body.hikedescription,
-        location: req.body.hikelocation,
-        difficulty: req.body.hikedifficulty,
-        max_altitude: req.body.hikealtitude,
-        length: req.body.hikelength,
-        rating: req.body.hikerating,
-        user_id: req.session.user_id,
-        imageUrl: req.body.file,
-    });
-    res.redirect("back");
-  });
+  
+
 
   //this route will get the specific hike you want to edit and take you to a page with just that hike
 router.get("/profile/:id", withAuth, async (req, res) => {   
