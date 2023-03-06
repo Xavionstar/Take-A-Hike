@@ -127,6 +127,7 @@ router.get("/hike/:id", async (req, res) => {
   let hikePost = await Hike.findOne({
     where: {
       id: req.params.id,
+      
     },
     include: [{ model: Comment }]
   });
@@ -134,6 +135,7 @@ router.get("/hike/:id", async (req, res) => {
   console.log(hikePost);
   res.render("hike_details", {
     hikePost,
+    logged_in: req.session.logged_in
   });
 });
 
