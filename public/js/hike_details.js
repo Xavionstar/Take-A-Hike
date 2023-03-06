@@ -11,7 +11,7 @@ async function newFormHandler(event) {
     
     // const hike_id = document.querySelector('#commentData').value;
     // Send fetch request to add a new dish
-    const response = await fetch(`/api/comment/${hike_id}`, {
+    const response = await fetch(`api/comment/${hike_id}`, {
       method: 'POST',
       body: JSON.stringify({
       content,
