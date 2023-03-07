@@ -22,7 +22,7 @@ router.get('/', async (req, res) => {
     }
 
     router.get('/:id', async (req, res) => {
-      // find one category by its `id` value
+      // find one comment by its `id` value
       
     
       try {
@@ -44,22 +44,25 @@ router.get('/', async (req, res) => {
     });
 
 });
-//  router.post('/:id',  async (req, res) => {
 
-router.post('/', withAuth, async (req, res) => {
+// post comment route
+ router.post('/:id',  async (req, res) => {
+
+// router.post('/', withAuth, async (req, res) => {
 
  
 
     try {
       const commentData = await Comment.create({
         ...req.body,
-        user_id: req.session.user_id,
-        // user_id: 1,
+        // user_id: req.session.user_id,
+        user_id: 1,
         hike_id: req.params.id
        
       });
   
       res.status(200).json(commentData);
+      
     } catch (err) {
       res.status(400).json(err);
     }
