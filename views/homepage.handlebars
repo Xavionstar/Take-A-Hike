@@ -2,8 +2,9 @@
   <img
     src="https://www.wallpaperbetter.com/wallpaper/159/604/884/usa-washington-mount-baker-volcano-lake-reflection-morning-sunrise-forest-1080P-wallpaper.jpg"
     alt="Nature">
-  <div class="container m-3">
-    <h1 class="display-4">Recently Posted Hikes</h1>
+    <h1 class="display-4 d-flex justify-content-center" >Recently Posted Hikes</h1>
+  <div class="container m-3 d-flex flex-row mb-3 " style="width: 97% ;" >
+    
     {{#each posts as |post|}}
     {{>hike-card}}
     {{/each}}
